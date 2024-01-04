@@ -1,0 +1,22 @@
+#include <ultra64.h>
+#include "sm64.h"
+#include "surface_terrains.h"
+#include "moving_texture_macros.h"
+#include "level_misc_macros.h"
+#include "macro_preset_names.h"
+#include "special_preset_names.h"
+#include "textures.h"
+#include "dialog_ids.h"
+
+#include "make_const_nonconst.h"
+#include "levels/gb/texture.inc.c"
+#include "levels/gb/area_1/light.inc.c"
+#include "levels/gb/tilting_square_platform/model.inc.c"
+#include "levels/gb/tilting_square_platform/collision.inc.c"
+#include "levels/gb/leveldata.inc.c"
+
+#include "levels/gb/gb_path_controlled_lift/model.inc.c"
+#include "levels/gb/gb_path_controlled_lift/collision.inc.c"
+#include "levels/gb/gb_path_controlled_lift_90/model.inc.c"
+#include "levels/gb/gb_up_down_log/collision.inc.c"
+#include "levels/gb/gb_up_down_log/model.inc.c"

@@ -1,0 +1,10 @@
+extern const GeoLayout moving_octagonal_mesh_platform_geo[];
+extern Lights1 moving_octagonal_mesh_platform_f3dlite_material_002_lights;
+extern u8 moving_octagonal_mesh_platform_paipu_ci8[];
+extern u8 moving_octagonal_mesh_platform_paipu_ci8_pal_rgba16[];
+extern Vtx moving_octagonal_mesh_platform_world_root_node_mesh_layer_4_vtx_0[42];
+extern Gfx moving_octagonal_mesh_platform_world_root_node_mesh_layer_4_tri_0[];
+extern Gfx mat_moving_octagonal_mesh_platform_f3dlite_material_002[];
+extern Gfx mat_revert_moving_octagonal_mesh_platform_f3dlite_material_002[];
+extern Gfx moving_octagonal_mesh_platform_world_root_node_mesh_layer_4[];
+extern Gfx moving_octagonal_mesh_platform_material_revert_render_settings[];

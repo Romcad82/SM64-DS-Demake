@@ -1,0 +1,9 @@
+extern const GeoLayout ccc_huge_ice_block_lift_geo[];
+extern u8 ccc_huge_ice_block_lift_ice_64x64_ci4[];
+extern u8 ccc_huge_ice_block_lift_ice_64x64_ci4_pal_rgba16[];
+extern Vtx ccc_huge_ice_block_lift_world_root_node_mesh_layer_1_vtx_0[30];
+extern Gfx ccc_huge_ice_block_lift_world_root_node_mesh_layer_1_tri_0[];
+extern Gfx mat_ccc_huge_ice_block_lift_f3dlite_material_002[];
+extern Gfx mat_revert_ccc_huge_ice_block_lift_f3dlite_material_002[];
+extern Gfx ccc_huge_ice_block_lift_world_root_node_mesh_layer_1[];
+extern Gfx ccc_huge_ice_block_lift_material_revert_render_settings[];

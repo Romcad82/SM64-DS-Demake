@@ -1,0 +1,15 @@
+extern const GeoLayout gb_path_controlled_lift_geo[];
+extern u8 gb_path_controlled_lift_emm_yuka01_ci8[];
+extern u8 gb_path_controlled_lift_emm_yuka01_ci8_pal_rgba16[];
+extern u8 gb_path_controlled_lift_wood_side_ci8[];
+extern u8 gb_path_controlled_lift_wood_side_ci8_pal_rgba16[];
+extern Vtx gb_path_controlled_lift_world_root_node_mesh_layer_1_vtx_0[4];
+extern Gfx gb_path_controlled_lift_world_root_node_mesh_layer_1_tri_0[];
+extern Vtx gb_path_controlled_lift_world_root_node_mesh_layer_1_vtx_1[12];
+extern Gfx gb_path_controlled_lift_world_root_node_mesh_layer_1_tri_1[];
+extern Gfx mat_gb_path_controlled_lift_f3dlite_material[];
+extern Gfx mat_revert_gb_path_controlled_lift_f3dlite_material[];
+extern Gfx mat_gb_path_controlled_lift_f3dlite_material_001[];
+extern Gfx mat_revert_gb_path_controlled_lift_f3dlite_material_001[];
+extern Gfx gb_path_controlled_lift_world_root_node_mesh_layer_1[];
+extern Gfx gb_path_controlled_lift_material_revert_render_settings[];

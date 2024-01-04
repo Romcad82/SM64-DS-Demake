@@ -1,0 +1,211 @@
+
+/**
+ * Behavior for WDW arrow lifts.
+ * When a player stands on an arrow lift, it starts moving between
+ * two positions 384 units apart.
+ * Arrow lifts move either along the X axis or the Z axis.
+ * Their facing angle is always perpendicular to the axis they move on.
+ * The angle the arrow lifts move initially is 90º clockwise of the face angle.
+ * This means an arrow lift at (0, 0, 0) with face angle 0 (positive Z) will
+ * move between (0, 0, 0) and (-384, 0, 0).
+ */
+
+/**
+ * Move the arrow lift away from its original position.
+ */
+static s32 arrow_lift_move_away(void) {
+    s8 doneMoving = FALSE;
+
+    o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
+    o->oVelY = 0;
+    o->oForwardVel = 12;
+    // Cumulative displacement is used to keep track of how far the platform
+    // has travelled, so that it can stop.
+    o->oArrowLiftDisplacement += o->oForwardVel;
+
+    // Stop the platform after moving 384 units.
+    if (o->oArrowLiftDisplacement > 384) {
+        o->oForwardVel = 0;
+        o->oArrowLiftDisplacement = 384;
+        doneMoving = TRUE;
+    }
+
+    obj_move_xyz_using_fvel_and_yaw(o);
+    return doneMoving;
+}
+
+/**
+ * Move the arrow lift back to its original position.
+ */
+static s8 arrow_lift_move_back(void) {
+    s8 doneMoving = FALSE;
+
+    o->oMoveAngleYaw = o->oFaceAngleYaw + 0x4000;
+    o->oVelY = 0;
+    o->oForwardVel = 12;
+    o->oArrowLiftDisplacement -= o->oForwardVel;
+
+    // Stop the platform after returning back to its original position.
+    if (o->oArrowLiftDisplacement < 0) {
+        o->oForwardVel = 0;
+        o->oArrowLiftDisplacement = 0;
+        doneMoving = TRUE;
+    }
+
+    obj_move_xyz_using_fvel_and_yaw(o);
+    return doneMoving;
+}
+
+/**
+ * Move the arrow lift away from its original position.
+ */
+static s32 bbb_path_controlled_lift_move_away(void) {
+	s8 doneMoving = FALSE;
+	u16 distance = GET_BPARAM1(o->oBehParams) * 10.0f;
+
+	if (o->oBehParams2ndByte == 0x00) {
+		o->oVelY = 0;
+		o->oForwardVel = 10;
+		// Cumulative displacement is used to keep track of how far the platform
+		// has travelled, so that it can stop.
+		o->oArrowLiftDisplacement += o->oForwardVel;
+	} else {
+		o->oVelY = 10;
+		o->oForwardVel = 0;
+		// Cumulative displacement is used to keep track of how far the platform
+		// has travelled, so that it can stop.
+		o->oArrowLiftDisplacement += o->oVelY;
+	}
+	/* Original: 
+	o->oMoveAngleYaw = o->oFaceAngleYaw - 0x4000;
+	o->oVelY = 0;
+	o->oForwardVel = 12;
+	// Cumulative displacement is used to keep track of how far the platform
+	// has travelled, so that it can stop.
+	o->oArrowLiftDisplacement += o->oForwardVel;
+	*/
+
+	// Stop the platform after moving distance.
+	if (o->oArrowLiftDisplacement > distance) {
+		o->oForwardVel = 0;
+		o->oVelY = 0;
+		o->oArrowLiftDisplacement = distance;
+		doneMoving = TRUE;
+	}
+
+	obj_move_xyz_using_fvel_and_yaw(o);
+	return doneMoving;
+}
+
+/**
+ * Move the arrow lift back to its original position.
+ */
+static s8 bbb_path_controlled_lift_move_back(void) {
+	s8 doneMoving = FALSE;
+
+	if (o->oBehParams2ndByte == 0x00) {
+		o->oVelY = 0;
+		o->oForwardVel = -10;
+		o->oArrowLiftDisplacement += o->oForwardVel;
+	} else {
+		o->oVelY = -10;
+		o->oForwardVel = 0;
+		o->oArrowLiftDisplacement += o->oVelY;
+	}
+	/* Original:
+	o->oMoveAngleYaw = o->oFaceAngleYaw + 0x4000;
+	o->oVelY = 0;
+	o->oForwardVel = 12;
+	o->oArrowLiftDisplacement -= o->oForwardVel;
+	*/
+
+	// Stop the platform after returning back to its original position.
+	if (o->oArrowLiftDisplacement < 0) {
+		o->oForwardVel = 0;
+		o->oVelY = 0;
+		o->oArrowLiftDisplacement = 0;
+		doneMoving = TRUE;
+	}
+
+	obj_move_xyz_using_fvel_and_yaw(o);
+	return doneMoving;
+}
+
+/**
+ * Arrow lift update function.
+ */
+void bhv_arrow_lift_loop(void) {
+    switch (o->oAction) {
+        case ARROW_LIFT_ACT_IDLE:
+            // Wait 61 frames before moving.
+            if (o->oTimer > 60) {
+                if (gMarioObject->platform == o) {
+                    o->oAction = ARROW_LIFT_ACT_MOVING_AWAY;
+                }
+            }
+
+            break;
+
+        case ARROW_LIFT_ACT_MOVING_AWAY:
+            if (arrow_lift_move_away()) {
+                o->oAction = ARROW_LIFT_ACT_MOVING_BACK;
+            }
+
+            break;
+
+        case ARROW_LIFT_ACT_MOVING_BACK:
+            // Wait 61 frames before moving (after stopping after moving forwards).
+            if (o->oTimer > 60) {
+                if (arrow_lift_move_back()) {
+                    o->oAction = ARROW_LIFT_ACT_IDLE;
+                }
+            }
+
+            break;
+    }
+}
+
+/**
+ * BBB Path Controlled Lift update function.
+ */
+
+/*
+BParam 1:
+	Distance: (BParam 1 * 10)
+
+BParam 2:
+	0: Side to Side
+	1: Up & Down
+*/
+void bhv_bbb_path_controlled_lift_loop(void) {
+	switch (o->oAction) {
+	case ARROW_LIFT_ACT_IDLE:
+		if (gMarioObject->platform == o) {
+			o->oAction = BBB_ARROW_LIFT_ACT_WAIT;
+		}
+
+		break;
+
+	case ARROW_LIFT_ACT_MOVING_AWAY:
+		if (bbb_path_controlled_lift_move_away()) {
+			o->oAction = ARROW_LIFT_ACT_MOVING_BACK;
+		}
+
+		break;
+
+	case ARROW_LIFT_ACT_MOVING_BACK:
+		if (bbb_path_controlled_lift_move_back()) {
+			o->oAction = ARROW_LIFT_ACT_MOVING_AWAY;
+		}
+
+		break;
+
+	case BBB_ARROW_LIFT_ACT_WAIT:
+		// Wait 31 frames before moving.
+		if (o->oTimer > 30) {
+			o->oAction = ARROW_LIFT_ACT_MOVING_AWAY;
+		}
+
+		break;
+	}
+}

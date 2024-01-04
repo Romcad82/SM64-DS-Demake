@@ -1,0 +1,15 @@
+extern const GeoLayout gb_up_down_log_geo[];
+extern u8 gb_up_down_log_ki_02_64x32_ci8[];
+extern u8 gb_up_down_log_ki_02_64x32_ci8_pal_rgba16[];
+extern u8 gb_up_down_log_nenrin_indexed_ci4[];
+extern u8 gb_up_down_log_nenrin_indexed_ci4_pal_rgba16[];
+extern Vtx gb_up_down_log_world_root_node_mesh_layer_1_vtx_0[20];
+extern Gfx gb_up_down_log_world_root_node_mesh_layer_1_tri_0[];
+extern Vtx gb_up_down_log_world_root_node_mesh_layer_1_vtx_1[18];
+extern Gfx gb_up_down_log_world_root_node_mesh_layer_1_tri_1[];
+extern Gfx mat_gb_up_down_log_f3dlite_material_002[];
+extern Gfx mat_revert_gb_up_down_log_f3dlite_material_002[];
+extern Gfx mat_gb_up_down_log_f3dlite_material_003[];
+extern Gfx mat_revert_gb_up_down_log_f3dlite_material_003[];
+extern Gfx gb_up_down_log_world_root_node_mesh_layer_1[];
+extern Gfx gb_up_down_log_material_revert_render_settings[];

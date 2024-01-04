@@ -1,0 +1,23 @@
+#include <ultra64.h>
+#include "sm64.h"
+#include "surface_terrains.h"
+#include "moving_texture_macros.h"
+#include "level_misc_macros.h"
+#include "macro_preset_names.h"
+#include "special_preset_names.h"
+#include "textures.h"
+#include "dialog_ids.h"
+
+#include "make_const_nonconst.h"
+#include "levels/bbb/tumbling_platform_far/model.inc.c"
+#include "levels/bbb/tumbling_platform_near/model.inc.c"
+#include "levels/bbb/tumbling_platform_far/collision.inc.c"
+#include "levels/bbb/tumbling_platform_near/collision.inc.c"
+#include "levels/bbb/leveldata.inc.c"
+
+#include "levels/bbb/bbb_path_controlled_lift/collision.inc.c"
+#include "levels/bbb/bbb_path_controlled_lift/model.inc.c"
+#include "levels/bbb/bbb_merry_go_round/collision.inc.c"
+#include "levels/bbb/bbb_merry_go_round/model.inc.c"
+#include "levels/bbb/bbb_trap_door/collision.inc.c"
+#include "levels/bbb/bbb_trap_door/model.inc.c"

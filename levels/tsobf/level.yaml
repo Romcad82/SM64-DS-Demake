@@ -1,0 +1,13 @@
+# The Secret of Battle Fort
+short-name: tsobf
+full-name: The Secret of Battle Fort
+texture-file: ["/texture.inc.c"]
+area-count: 1
+objects: []
+shared-path: []
+# loaded files
+skybox-bin: water
+texture-bin: generic
+effects: false
+actor-bins: [group1]
+common-bin: [common0]

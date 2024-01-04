@@ -1,0 +1,75 @@
+{
+    "date": "1996-03-19",
+    "sample_bank": "instruments",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "envelope1": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"envelope2": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"envelope3": [
+            [2, 32700],
+            [130, 4954],
+            [523, 0],
+            "hang"
+        ],
+		"envelope4": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 208,
+            "envelope": "envelope0",
+            "sound": "2E_accordion"
+        },
+        "inst1": {
+            "release_rate": 19,
+            "envelope": "envelope1",
+            "sound": "3C_acoustic_guitar"
+        },
+		"inst2": {
+            "release_rate": 208,
+            "envelope": "envelope2",
+            "sound": "05_acoustic_bass"
+        },
+		"inst3": {
+            "release_rate": 100,
+            "normal_range_lo": 41,
+            "envelope": "envelope3",
+            "sound_lo": "00",
+            "sound": "01_banjo_1"
+        },
+		"inst4": {
+            "release_rate": 19,
+            "envelope": "envelope4",
+            "sound": "49_waves_custom"
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        "inst1",
+        "inst2",
+        "inst3",
+        "inst4",
+        null,
+        null,
+        null
+    ]
+}
