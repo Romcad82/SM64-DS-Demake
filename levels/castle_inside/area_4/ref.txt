@@ -1,9 +1,0 @@
-geo.inc.c
-
-(room 2)
-GEO_ASM(0, geo_painting_update),
-GEO_ASM(PAINTING_ID(0, 3), geo_painting_draw),
-
-(room 3)
-GEO_ASM(0, geo_painting_update),
-GEO_ASM(PAINTING_ID(1, 3), geo_painting_draw),
