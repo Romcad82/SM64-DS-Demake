@@ -207,60 +207,69 @@ u32 mario_update_moving_sand(struct MarioState *m) {
     return FALSE;
 }
 
+//
+static u32 horizontal_wind_ground(struct MarioState* m, struct Surface* floor, f32 speedMult) {
+	f32 pushSpeed;
+	s16 pushAngle = floor->force << 8;
+
+	if (m->action & ACT_FLAG_MOVING) {
+		s16 pushDYaw = m->faceAngle[1] - pushAngle;
+
+		pushSpeed = m->forwardVel > 0.0f ? -m->forwardVel * 0.5f : -8.0f;
+
+		if (pushDYaw > -0x4000 && pushDYaw < 0x4000) {
+			pushSpeed *= -1.0f;
+		}
+
+		pushSpeed *= coss(pushDYaw);
+	} else {
+		pushSpeed = 3.2f + (gGlobalTimer % 4);
+	}
+
+	m->vel[0] += (pushSpeed * speedMult) * sins(pushAngle);
+	m->vel[2] += (pushSpeed * speedMult) * coss(pushAngle);
+
+	return TRUE;
+}
+//
+
 u32 mario_update_windy_ground(struct MarioState *m) {
     struct Surface *floor = m->floor;
 
 	if (gCurrLevelNum == LEVEL_CCC) {
-		if ((floor->type == SURFACE_HORIZONTAL_WIND) && !(m->flags & MARIO_METAL_CAP)) { // Original: if (floor->type == SURFACE_HORIZONTAL_WIND)
-			f32 pushSpeed;
-			s16 pushAngle = floor->force << 8;
-
-			if (m->action & ACT_FLAG_MOVING) {
-				s16 pushDYaw = m->faceAngle[1] - pushAngle;
-
-				pushSpeed = m->forwardVel > 0.0f ? -m->forwardVel * 0.5f : -8.0f;
-
-				if (pushDYaw > -0x4000 && pushDYaw < 0x4000) {
-					pushSpeed *= -1.0f;
-				}
-
-				pushSpeed *= coss(pushDYaw);
-			}
-			else {
-				pushSpeed = 3.2f + (gGlobalTimer % 4);
-			}
-
-			m->vel[0] += (pushSpeed * 5.0f) * sins(pushAngle);
-			m->vel[2] += (pushSpeed * 5.0f) * coss(pushAngle);
-
-			return TRUE;
+		if ((floor->type == SURFACE_HORIZONTAL_WIND) && !(m->flags & MARIO_METAL_CAP)) {
+			return horizontal_wind_ground(m, floor, 5.0f);
 		}
 	} else {
 		if (floor->type == SURFACE_HORIZONTAL_WIND) {
-			f32 pushSpeed;
-			s16 pushAngle = floor->force << 8;
-
-			if (m->action & ACT_FLAG_MOVING) {
-				s16 pushDYaw = m->faceAngle[1] - pushAngle;
-
-				pushSpeed = m->forwardVel > 0.0f ? -m->forwardVel * 0.5f : -8.0f;
-
-				if (pushDYaw > -0x4000 && pushDYaw < 0x4000) {
-					pushSpeed *= -1.0f;
-				}
-
-				pushSpeed *= coss(pushDYaw);
-			}
-			else {
-				pushSpeed = 3.2f + (gGlobalTimer % 4);
-			}
-
-			m->vel[0] += pushSpeed * sins(pushAngle);
-			m->vel[2] += pushSpeed * coss(pushAngle);
-
-			return TRUE;
+			return horizontal_wind_ground(m, floor, 1.0f);
 		}
 	}
+    /* Original:
+    if (floor->type == SURFACE_HORIZONTAL_WIND) {
+        f32 pushSpeed;
+        s16 pushAngle = floor->force << 8;
+
+        if (m->action & ACT_FLAG_MOVING) {
+            s16 pushDYaw = m->faceAngle[1] - pushAngle;
+
+            pushSpeed = m->forwardVel > 0.0f ? -m->forwardVel * 0.5f : -8.0f;
+
+            if (pushDYaw > -0x4000 && pushDYaw < 0x4000) {
+                pushSpeed *= -1.0f;
+            }
+
+            pushSpeed *= coss(pushDYaw);
+        } else {
+            pushSpeed = 3.2f + (gGlobalTimer % 4);
+        }
+
+        m->vel[0] += pushSpeed * sins(pushAngle);
+        m->vel[2] += pushSpeed * coss(pushAngle);
+
+        return TRUE;
+    }
+    */
 
     return FALSE;
 }
@@ -271,8 +280,10 @@ void stop_and_set_height_to_floor(struct MarioState *m) {
     mario_set_forward_vel(m, 0.0f);
     m->vel[1] = 0.0f;
 
-    //! This is responsible for some downwarps.
-    m->pos[1] = m->floorHeight;
+    // HackerSM64 2.1: This check fixes the ledgegrab downwarp after being pushed off a ledge.
+    if (m->pos[1] <= m->floorHeight + 160.0f) {
+        m->pos[1] = m->floorHeight;
+    }
 
     vec3f_copy(marioObj->header.gfx.pos, m->pos);
     vec3s_set(marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -288,9 +299,10 @@ s32 stationary_ground_step(struct MarioState *m) {
     if (takeStep) {
         stepResult = perform_ground_step(m);
     } else {
-        //! TODO - This is responsible for many stationary downwarps but is
-        // important for stuff like catching Bowser in midair, figure out a good way to fix
-        m->pos[1] = m->floorHeight;
+        // HackerSM64 2.1: This check prevents the downwarps that plagued stationary actions.
+        if (m->pos[1] <= m->floorHeight + 160.0f) {
+            m->pos[1] = m->floorHeight;
+        }
 
         vec3f_copy(marioObj->header.gfx.pos, m->pos);
         vec3s_set(marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);

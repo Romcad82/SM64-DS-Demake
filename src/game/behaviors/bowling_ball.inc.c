@@ -60,9 +60,9 @@ void bhv_bowling_ball_init(void) {
 void bowling_ball_set_hitbox(void) {
     obj_set_hitbox(o, &sBowlingBallHitbox);
 
-	if (o->oInteractStatus & INT_STATUS_INTERACTED) {
-		o->oInteractStatus = INT_STATUS_NONE;
-	}
+    if (o->oInteractStatus & INT_STATUS_INTERACTED) {
+        o->oInteractStatus = INT_STATUS_NONE;
+    }
 }
 
 void bowling_ball_set_waypoints(void) {
@@ -177,7 +177,7 @@ void bhv_bowling_ball_loop(void) {
             break;
     }
 
-    if ((o->oBehParams2ndByte != BBALL_BP_STYPE_THI_SMALL) && (o->oBehParams2ndByte != BBALL_BP_STYPE_TSOBF_X) && (o->oBehParams2ndByte != BBALL_BP_STYPE_TSOBF_Z)) {
+    if ((o->oBehParams2ndByte != BBALL_BP_STYPE_THI_SMALL) && (o->oBehParams2ndByte != BBALL_BP_STYPE_TSOBF_X) && (o->oBehParams2ndByte != BBALL_BP_STYPE_TSOBF_Z)) { // Original: if (o->oBehParams2ndByte != BBALL_BP_STYPE_THI_SMALL)
         set_camera_shake_from_point(SHAKE_POS_BOWLING_BALL, o->oPosX, o->oPosY, o->oPosZ);
     }
 

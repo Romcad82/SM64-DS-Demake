@@ -25,4 +25,4 @@ void scroll_si_dl_Ignore_Collision_mesh_layer_5_vtx_1() {
 
 void scroll_si() {
 	scroll_si_dl_Ignore_Collision_mesh_layer_5_vtx_1();
-}
+};

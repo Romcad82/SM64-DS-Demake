@@ -150,24 +150,10 @@ static void goomba_boss_turning(void) {
 
 	cur_obj_rotate_yaw_toward(o->oGoombaTargetYaw, 0x5000);
 
-	if (cur_obj_is_within_rectangle(-1800.0f, 1800.0f, -2.5f, 2.5f)) {
+	if (cur_obj_is_within_rectangle(-1800.0f, 1800.0f, -5.0f, 5.0f)) {
 		o->oPosX = (o->oPosX >= 0.0f) ? o->oHomeX : -o->oHomeX;
-		/*
-		if (o->oPosX > 0.0f) {
-			o->oPosX = o->oHomeX;
-		} else {
-			o->oPosX = -o->oHomeX;
-		}
-		*/
-	} else if (cur_obj_is_within_rectangle(-2.5f, 2.5f, -1800.0f, 1800.0f)) {
+	} else if (cur_obj_is_within_rectangle(-5.0f, 5.0f, -1800.0f, 1800.0f)) {
 		o->oPosZ = (o->oPosZ >= 0.0f) ? o->oHomeX : -o->oHomeX;
-		/*
-		if (o->oPosZ > 0.0f) {
-			o->oPosZ = o->oHomeX;
-		} else {
-			o->oPosZ = -o->oHomeX;
-		}
-		*/
 	}
 }
 
@@ -177,13 +163,6 @@ static void goomba_boss_turning(void) {
 static void goomba_boss_begin_jump(void) {
 	if (!(mario_inbetween_cur_obj_angles(o->oGoombaTargetYaw - 0x4000, o->oGoombaTargetYaw + 0x4000))) {
 		o->oCurrDirection += (o->oCurrDirection == 0x0) ? 0x8000 : -0x8000;
-		/*
-		if (o->oCurrDirection == 0x0) {
-			o->oCurrDirection += 0x8000;
-		} else {
-			o->oCurrDirection -= 0x8000;
-		}
-		*/
 		o->oGoombaTargetYaw += 0x8000;
 	}
 

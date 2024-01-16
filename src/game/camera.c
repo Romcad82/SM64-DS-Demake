@@ -27,6 +27,7 @@
 #include "level_table.h"
 #include "config.h"
 #include "puppyprint.h"
+#include "profiling.h"
 
 #define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
 
@@ -1326,6 +1327,8 @@ s32 update_parallel_tracking_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         sParTrackTransOff.pos[1] = oldPos[1] - c->pos[1];
         sParTrackTransOff.pos[2] = oldPos[2] - c->pos[2];
     }
+
+    //
 	switch (gCurrLevelArea) {
 		case AREA_CASTLE_TIPPY:
 			if (c->pos[2] < path[0][2]) {
@@ -1339,6 +1342,8 @@ s32 update_parallel_tracking_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
 			sParTrackTransOff.pos[0] = marioPos[0] + 1000.0f;
             break;
     }
+    //
+    
     // Slowly transition to the next path
     approach_f32_asymptotic_bool(&sParTrackTransOff.pos[0], 0.f, 0.025f);
     approach_f32_asymptotic_bool(&sParTrackTransOff.pos[1], 0.f, 0.025f);
@@ -2926,12 +2931,12 @@ void update_lakitu(struct Camera *c) {
     gLakituState.defMode = c->defMode;
 }
 
-
 /**
  * The main camera update function.
  * Gets controller input, checks for cutscenes, handles mode changes, and moves the camera
  */
 void update_camera(struct Camera *c) {
+    PROFILER_GET_SNAPSHOT_TYPE(PROFILER_DELTA_COLLISION);
     gCamera = c;
     update_camera_hud_status(c);
     if (c->cutscene == CUTSCENE_NONE
@@ -3174,6 +3179,7 @@ void update_camera(struct Camera *c) {
     }
 #endif
     gLakituState.lastFrameAction = sMarioCamState->action;
+    profiler_update(PROFILER_TIME_CAMERA, profiler_get_delta(PROFILER_DELTA_COLLISION) - first);
 }
 
 /**
@@ -4835,6 +4841,9 @@ void start_cutscene(struct Camera *c, u8 cutscene) {
  * @return the victory cutscene to use
  */
 s32 determine_dance_cutscene(UNUSED struct Camera *c) {
+#ifdef NON_STOP_STARS
+    return CUTSCENE_DANCE_DEFAULT;
+#else
     u8 cutscene = CUTSCENE_NONE;
     u8 cutsceneIndex = 0;
     u8 starIndex = (gLastCompletedStarNum - 1) / 2;
@@ -4857,6 +4866,7 @@ s32 determine_dance_cutscene(UNUSED struct Camera *c) {
     }
     cutscene = sDanceCutsceneTable[cutsceneIndex];
     return cutscene;
+#endif
 }
 
 /**
@@ -10661,8 +10671,8 @@ u8 sZoomOutAreaMasks[] = {
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // BOWSER_3       | Unused
 	ZOOMOUT_AREA_MASK(1, 0, 0, 0, 0, 0, 0, 0), // TTM            | Unused
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused         | TSOBF
-	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // SI			 | GB
-	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // BBB			 | CCC
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // SI             | GB
+	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 1, 1, 0, 0), // BBB			   | CCC
 	ZOOMOUT_AREA_MASK(0, 0, 0, 0, 0, 0, 0, 0), // Unused
 };
 
@@ -11274,7 +11284,9 @@ Gfx *geo_camera_fov(s32 callContext, struct GraphNode *g, UNUSED void *context) 
             case CAM_FOV_APP_60:
                 approach_fov_60(marioState);
                 break;
-            //! No default case
+            default:
+                set_fov_45(marioState);
+                break;
         }
     }
 

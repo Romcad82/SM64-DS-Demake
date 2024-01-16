@@ -164,7 +164,7 @@ static void boo_approach_target_opacity_and_update_scale(void) {
 static void boo_oscillate(s32 ignoreOpacity) {
     o->oFaceAnglePitch = sins(o->oBooOscillationTimer) * 0x400;
 
-    if ((o->oOpacity == 255 || ignoreOpacity == TRUE) || ((cur_obj_has_behavior(bhvKingBoo)) && (o->oKingBooInvisible > 0))) {
+    if ((o->oOpacity == 255 || ignoreOpacity == TRUE) || ((cur_obj_has_behavior(bhvKingBoo)) && (o->oKingBooInvisible > 0))) { // Original: if (o->oOpacity == 255 || ignoreOpacity == TRUE)
         o->header.gfx.scale[0] = sins(o->oBooOscillationTimer) * 0.08 + o->oBooBaseScale;
         o->header.gfx.scale[1] = -sins(o->oBooOscillationTimer) * 0.08 + o->oBooBaseScale;
         o->header.gfx.scale[2] = o->header.gfx.scale[0];
@@ -185,15 +185,15 @@ static s32 boo_vanish_or_appear(void) {
 
     if (relativeAngleToMario > relativeAngleToMarioThreshhold
         || relativeMarioFaceAngle < relativeMarioFaceAngleThreshhold) {
-        if ((o->oOpacity == 40) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity == 40))) {
+        if ((o->oOpacity == 40) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity == 40))) { // Original: if (o->oOpacity == 40)
             o->oBooTargetOpacity = 255;
             cur_obj_play_sound_2(SOUND_OBJ_BOO_LAUGH_LONG);
         }
 
-        if ((o->oOpacity > 180) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity > 180))) {
+        if ((o->oOpacity > 180) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity > 180))) { // Original: if (o->oOpacity > 180)
             doneAppearing = TRUE;
         }
-    } else if ((o->oOpacity == 255) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity == 255))) {
+    } else if ((o->oOpacity == 255) || ((cur_obj_has_behavior(bhvKingBoo)) && (cur_obj_nearest_object_with_behavior(bhvKingBooMirror)->oOpacity == 255))) { // Original: else if (o->oOpacity == 255)
         o->oBooTargetOpacity = 40;
 	}
 
@@ -294,9 +294,11 @@ static s32 big_boo_update_during_nonlethal_hit(f32 a0) {
     if (o->oTimer < 32) {
         boo_move_during_hit(TRUE, sBooHitRotations[o->oTimer] / 5000.0f * a0);
     } else if (o->oTimer < 48) {
+        //
 		if (o->oTimer == 32) {
 			o->oFaceAngleRoll -= 0x10018;
 		}
+        //
         big_boo_shake_after_hit();
     } else {
 		if (!cur_obj_has_behavior(bhvKingBoo)) {
@@ -561,9 +563,7 @@ static void big_boo_act_0(void) {
 		if (!cur_obj_has_behavior(bhvKingBoo)) {
 			cur_obj_set_pos_to_home();
 		}
-		/* Original:
-        cur_obj_set_pos_to_home();
-		*/
+        // Original: cur_obj_set_pos_to_home();
 
         o->oMoveAngleYaw = o->oBooInitialMoveYaw;
 
@@ -628,7 +628,7 @@ static void big_boo_spawn_ghost_hunt_star(void) {
 }
 
 static void big_boo_spawn_balcony_star(void) {
-	spawn_default_star(700.0f, 3200.0f, 1900.0f);
+    spawn_default_star(700.0f, 3200.0f, 1900.0f);
 }
 
 static void big_boo_spawn_merry_go_round_star(void) {

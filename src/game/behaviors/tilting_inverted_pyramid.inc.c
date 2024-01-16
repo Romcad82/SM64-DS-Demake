@@ -9,7 +9,7 @@
  */
 void bhv_platform_normals_init(void) {
     vec3f_set(&o->oTiltingPyramidNormalVec, 0.0f, 1.0f, 0.0f);
-	mtxf_align_terrain_normal(o->transform, &o->oTiltingPyramidNormalVec, &o->oPosVec, 0);
+    mtxf_align_terrain_normal(o->transform, &o->oTiltingPyramidNormalVec, &o->oPosVec, 0);
 }
 
 /**

@@ -23,7 +23,7 @@ static void handle_bbb_merry_go_round_music(void) {
 
 	// There's a sign in first room. This is so if you stand on it, the music still plays.
 	s32 onSign = FALSE;
-	if ((gMarioCurrentRoom == 0) && (mario_is_within_rectangle(-100.0f, 100.0f, 200.0f, 400.0f))) {
+	if (mario_is_within_rectangle(-100.0f, 100.0f, 200.0f, 400.0f)) {
 		onSign = TRUE;
 	}
 

@@ -558,9 +558,13 @@ static s32 obj_handle_attacks(struct ObjectHitbox *hitbox, s32 attackedMarioActi
     } else if (o->oInteractStatus & INT_STATUS_INTERACTED) {
         if (o->oInteractStatus & INT_STATUS_ATTACKED_MARIO) {
             if (o->oAction != attackedMarioAction) {
+
+                //
 				if ((cur_obj_has_behavior(bhvGoombaBoss)) || (cur_obj_has_behavior(bhvGoombaMinion))) {
 					o->oGoombaPrevAction = o->oAction;
 				}
+                //
+                
                 o->oAction = attackedMarioAction;
                 o->oTimer = 0;
             }

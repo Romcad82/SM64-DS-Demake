@@ -94,12 +94,14 @@ void bully_act_chase_mario(void) {
         if (o->oTimer > 30) {
             o->oTimer = 0;
         }
+    //
     } else if (cur_obj_has_behavior(bhvChiefChilly)) {
 		o->oForwardVel = 30.0f;
 		obj_turn_toward_object(o, gMarioObject, O_MOVE_ANGLE_YAW_INDEX, 0x100);
 		if (!(obj_inbetween_cur_obj_angles(gMarioObject, (o->oFaceAngleYaw - 0x3000), (o->oFaceAngleYaw + 0x3000)))) { // Figure out some way to incorporate this: lateral_dist_between_objects(o, gMarioObject) > 2000.0f
 			o->oTimer = 0;
 		}
+    //
     } else {
         o->oForwardVel = 30.0f;
         if (o->oTimer > 35) {
@@ -201,12 +203,18 @@ void bully_step(void) {
 		} else if ((o->oPosY < -8.0f) && ((gCurrLevelNum == LEVEL_CCC) && (gCurrAreaIndex == 2))){
 			o->oAction = OBJ_ACT_LAVA_DEATH;
 		}
+        /* Original:
+        if (o->oPosY < 1030.0f) {
+            o->oAction = OBJ_ACT_LAVA_DEATH;
+        }
+        */
     }
-
+    //
 	if ((cur_obj_has_behavior(bhvChiefChilly)) && (!(collisionFlags & OBJ_COL_FLAG_GROUNDED)) && (o->oAction == BULLY_ACT_KNOCKBACK) && (o->oCCHealth == 0) && (o->oFinalDeathCheck == FALSE)) {
 		o->oFinalDeathCheck = TRUE;
 		o->oAction = 8;
 	}
+    //
 }
 
 void bully_spawn_coin(void) {
@@ -312,7 +320,7 @@ void bully_act_level_death(void) {
             spawn_mist_particles();
 
             if (o->oBullySubtype == BULLY_STYPE_CHILL) {
-				spawn_default_star(130.0f, 1600.0f, -4335.0f);
+                spawn_default_star(130.0f, 1600.0f, -4335.0f);
             } else {
                 spawn_default_star(0, 950.0f, -6800.0f);
                 spawn_object_abs_with_rot(o, 0, MODEL_NONE, bhvLllTumblingBridge,

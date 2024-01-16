@@ -341,7 +341,7 @@ static void klepto_act_retreat(void) {
 static void klepto_act_reset_position(void) {
     if (o->oTimer < 300) {
         klepto_circle_target(300.0f, 20.0f);
-    } else if (o->oBehParams2ndByte == KLEPTO_BP_HAS_STAR) {
+    } else if (o->oBehParams2ndByte == KLEPTO_BP_HAS_STAR) { // Original: else if (o->oBehParams2ndByte != 0)
         o->oHomeX = -2000.0f;
         o->oHomeZ = -1000.0f;
         o->oHomeY = o->oKleptoDistanceToTarget = 9999.0f;

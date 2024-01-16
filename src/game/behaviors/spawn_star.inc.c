@@ -13,7 +13,7 @@ static struct ObjectHitbox sCollectStarHitbox = {
 };
 
 void bhv_collect_star_init(void) {
-    s8 starId = GET_BPARAM1(o->oBehParams);
+    u8 starId = GET_BPARAM1(o->oBehParams);
 #ifdef GLOBAL_STAR_IDS
     u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(starId / 7));
     if (currentLevelStarFlags & (1 << (starId % 7))) {
@@ -47,7 +47,7 @@ void bhv_star_spawn_init(void) {
     o->oStarSpawnVelY = o->oPosY;
 
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
-    if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR || gCurrCourseNum == COURSE_BBH || gCurrLevelNum == LEVEL_BBB) {
+    if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR || gCurrCourseNum == COURSE_BBH || gCurrLevelNum == LEVEL_BBB) { // Original: if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR || gCurrCourseNum == COURSE_BBH)
 #else
     if (o->oBehParams2ndByte == SPAWN_STAR_ARC_CUTSCENE_BP_DEFAULT_STAR) {
 #endif
@@ -61,6 +61,11 @@ void bhv_star_spawn_init(void) {
 	} else {
 		o->oAction = SPAWN_STAR_ARC_CUTSCENE_ACT_END;
 	}
+    /* Original:
+    } else {
+        cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
+    }
+    */
 
 	if (o->oBehParams2ndByte != 3) {
 		set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
@@ -206,6 +211,7 @@ void spawn_red_coin_cutscene_star(f32 x, f32 y, f32 z) {
     starObj->oBehParams2ndByte = SPAWN_STAR_ARC_CUTSCENE_BP_HIDDEN_STAR;
 }
 
+//
 struct Object *spawn_and_return_red_coin_cutscene_star(f32 x, f32 y, f32 z) {
 	struct Object* starObj = NULL;
 	starObj = spawn_star(starObj, x, y, z);
@@ -226,6 +232,7 @@ struct Object *spawn_and_return_switch_star_cutscene_star(f32 x, f32 y, f32 z) {
     starObj->oBehParams2ndByte = 3;
 	return starObj;
 }
+//
 
 void spawn_no_exit_star(f32 x, f32 y, f32 z) {
     struct Object *starObj = NULL;
@@ -237,18 +244,35 @@ void spawn_no_exit_star(f32 x, f32 y, f32 z) {
 void bhv_hidden_red_coin_star_init(void) {
     struct Object *starObj = NULL;
 
-    if ((gCurrCourseNum != COURSE_JRB) && (gCurrLevelNum != LEVEL_CASTLE_COURTYARD)) {
+#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
+    if ((gCurrCourseNum != COURSE_JRB) && (gCurrLevelNum != LEVEL_CASTLE_COURTYARD)) { // Original: if (gCurrCourseNum != COURSE_JRB)
         spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
     }
+#else
+    spawn_object(o, MODEL_TRANSPARENT_STAR, bhvRedCoinStarMarker);
+#endif
 
-    s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
-    if (numRedCoinsRemaining == 0) {
-        starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
-        starObj->oBehParams = o->oBehParams;
-        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+    // check if bparam2 specifies a total number of coins that should spawn the star
+    if (o->oBehParams2ndByte != 0) {
+        o->oHiddenStarTriggerTotal = o->oBehParams2ndByte;
+        o->oHiddenStarTriggerCounter = gRedCoinsCollected;
+        if (o->oHiddenStarTriggerCounter >= o->oHiddenStarTriggerTotal) {
+            starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+            starObj->oBehParams = o->oBehParams;
+            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        }
     }
-
-    o->oHiddenStarTriggerCounter = 8 - numRedCoinsRemaining;
+    else {
+        s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
+        if (numRedCoinsRemaining == 0) {
+            starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+            starObj->oBehParams = o->oBehParams;
+            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        }
+        o->oHiddenStarTriggerTotal = numRedCoinsRemaining + gRedCoinsCollected;
+        o->oHiddenStarTriggerCounter = o->oHiddenStarTriggerTotal - numRedCoinsRemaining;
+    }
+    
 }
 
 void bhv_hidden_red_coin_star_loop(void) {
@@ -256,7 +280,7 @@ void bhv_hidden_red_coin_star_loop(void) {
 
     switch (o->oAction) {
         case HIDDEN_STAR_ACT_INACTIVE:
-            if (o->oHiddenStarTriggerCounter == 8) {
+            if (o->oHiddenStarTriggerCounter == o->oHiddenStarTriggerTotal) {
                 o->oAction = HIDDEN_STAR_ACT_ACTIVE;
             }
             break;

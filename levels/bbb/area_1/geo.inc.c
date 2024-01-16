@@ -21,6 +21,7 @@ const GeoLayout bbb_area_1_geo[] = {
 const GeoLayout bbb_dl_Room01_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
+		GEO_TRANSLATE_NODE(LAYER_OPAQUE, 196, 300, 500),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bbb_dl_Ignore_Collision_mesh_layer_1),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, bbb_dl_r0_node_mesh_layer_1),
 	GEO_CLOSE_NODE(),
@@ -122,8 +123,6 @@ const GeoLayout bbb_area_1[] = {
 				GEO_CLOSE_NODE(),
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, bbb_dl_material_revert_render_settings),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, bbb_dl_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

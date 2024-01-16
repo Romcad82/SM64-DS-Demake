@@ -279,19 +279,19 @@ void coin_inside_boo_act_dropped(void) {
     if (o->oTimer > 90 || o->oMoveFlags & OBJ_MOVE_LANDED) {
         obj_set_hitbox(o, &sYellowCoinHitbox);
         cur_obj_become_tangible();
-		cur_obj_set_behavior(bhvYellowCoin);
+        cur_obj_set_behavior(bhvYellowCoin);
     }
 
     cur_obj_move_standard(-30);
-	bhv_coin_sparkles_init();
+    bhv_coin_sparkles_init();
 
     if (cur_obj_has_model(MODEL_BLUE_COIN)) {
         o->oDamageOrCoinValue = 5;
-	}
+    }
 
-	if (cur_obj_wait_then_blink(400, 20)) {
-		obj_mark_for_deletion(o);
-	}
+    if (cur_obj_wait_then_blink(400, 20)) {
+        obj_mark_for_deletion(o);
+    }
 }
 
 void coin_inside_boo_act_carried(void) {
@@ -305,6 +305,12 @@ void coin_inside_boo_act_carried(void) {
 		cur_obj_set_model(MODEL_RED_COIN);
 		cur_obj_scale(0.9f);
 	}
+    /* Original:
+    if (o->oTimer == 0 && GET_BPARAM1(parent->oBehParams) != COIN_INSIDE_BOO_BP_YELLOW_COIN) {
+        cur_obj_set_model(MODEL_BLUE_COIN);
+        cur_obj_scale(0.7f);
+    }
+    */
 
     obj_copy_pos(o, parent);
 

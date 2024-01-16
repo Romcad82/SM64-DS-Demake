@@ -9,6 +9,7 @@
 #include "dialog_ids.h"
 
 #include "make_const_nonconst.h"
+#include "levels/bbb/texture.inc.c"
 #include "levels/bbb/tumbling_platform_far/model.inc.c"
 #include "levels/bbb/tumbling_platform_near/model.inc.c"
 #include "levels/bbb/tumbling_platform_far/collision.inc.c"

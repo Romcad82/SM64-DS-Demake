@@ -70,9 +70,9 @@ void bhv_silvers_hidden_star_loop(void) {
 			silverStar->oForwardVel = 15.0f;
 
 			#ifdef DIALOG_INDICATOR
-			spawn_orange_number((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_F + 1)), (-o->oPosX + gMarioObject->oPosX), (-o->oPosY + gMarioObject->oPosY), (-o->oPosZ + gMarioObject->oPosZ));
+			spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_F + 1)), gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ);
 			#else
-			spawn_orange_number((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_9 + 1)), (-o->oPosX + gMarioObject->oPosX), (-o->oPosY + gMarioObject->oPosY), (-o->oPosZ + gMarioObject->oPosZ));
+			spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_9 + 1)), gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ);
 			#endif
 
 			play_silver_star_music(TRUE, 0);
@@ -273,13 +273,24 @@ void bhv_silver_star_loop(void) {
 		}
 	}
 }
+void bhv_bowser_course_red_coin_star_init(void) {
+    if (o->oBehParams2ndByte != 0) {
+        o->oHiddenStarTriggerTotal = o->oBehParams2ndByte;
+        o->oHiddenStarTriggerCounter = gRedCoinsCollected;
+    }
+    else {
+        s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
+        o->oHiddenStarTriggerTotal = numRedCoinsRemaining + gRedCoinsCollected;
+        o->oHiddenStarTriggerCounter = o->oHiddenStarTriggerTotal - numRedCoinsRemaining;
+    }
+}
 
 void bhv_bowser_course_red_coin_star_loop(void) {
     gRedCoinsCollected = o->oHiddenStarTriggerCounter;
 
     switch (o->oAction) {
         case 0:
-            if (o->oHiddenStarTriggerCounter == 8) {
+            if (o->oHiddenStarTriggerCounter == o->oHiddenStarTriggerTotal) {
                 o->oAction = 1;
             }
             break;

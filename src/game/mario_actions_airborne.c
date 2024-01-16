@@ -136,62 +136,76 @@ s32 check_fall_damage_or_get_stuck(struct MarioState *m, u32 hardFallAction) {
     return check_fall_damage(m, hardFallAction);
 }
 
+//
+static s32 horizontal_wind_airborne(struct MarioState *m, struct Surface *floor, f32 speedMult) {
+	f32 speed;
+	s16 pushAngle;
+
+	pushAngle = floor->force << 8;
+
+	m->slideVelX += (1.2f * speedMult) * sins(pushAngle);
+	m->slideVelZ += (1.2f * speedMult) * coss(pushAngle);
+
+	speed = (sqr(m->slideVelX) + sqr(m->slideVelZ));
+
+	if (speed > sqr(48.0f)) {
+		speed = sqrtf(speed);
+		m->slideVelX = m->slideVelX * 48.0f / speed;
+		m->slideVelZ = m->slideVelZ * 48.0f / speed;
+		speed = 48.0f;
+	} else if (speed > 32.0f) {
+		speed = 32.0f;
+	}
+
+	m->vel[0] = m->slideVelX;
+	m->vel[2] = m->slideVelZ;
+	m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
+	m->forwardVel = speed * coss(m->faceAngle[1] - m->slideYaw);
+	return TRUE;
+}
+//
+
 s32 check_horizontal_wind(struct MarioState *m) {
-    struct Surface *floor = m->floor;
+	struct Surface *floor = m->floor;
+	/* Original:
     f32 speed;
     s16 pushAngle;
+	*/
 
 	if (gCurrLevelNum == LEVEL_CCC) {
-		if ((floor->type == SURFACE_HORIZONTAL_WIND) && !(m->flags & MARIO_METAL_CAP)) { // Original: if (floor->type == SURFACE_HORIZONTAL_WIND)
-			pushAngle = floor->force << 8;
-
-			m->slideVelX += 1.2f * sins(pushAngle);
-			m->slideVelZ += 1.2f * coss(pushAngle);
-
-			speed = (sqr(m->slideVelX) + sqr(m->slideVelZ));
-
-			if (speed > sqr(48.0f)) {
-				speed = sqrtf(speed);
-				m->slideVelX = m->slideVelX * 48.0f / speed;
-				m->slideVelZ = m->slideVelZ * 48.0f / speed;
-				speed = 48.0f;
-			}
-			else if (speed > 32.0f) {
-				speed = 32.0f;
-			}
-
-			m->vel[0] = m->slideVelX;
-			m->vel[2] = m->slideVelZ;
-			m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
-			m->forwardVel = speed * coss(m->faceAngle[1] - (m->slideYaw * 2.5f));
-			return TRUE;
+		if ((floor->type == SURFACE_HORIZONTAL_WIND) && !(m->flags & MARIO_METAL_CAP)) {
+			return horizontal_wind_airborne(m, floor, 2.0f);
 		}
 	} else {
 		if (floor->type == SURFACE_HORIZONTAL_WIND) {
-			pushAngle = floor->force << 8;
-
-			m->slideVelX += 1.2f * sins(pushAngle);
-			m->slideVelZ += 1.2f * coss(pushAngle);
-
-			speed = (sqr(m->slideVelX) + sqr(m->slideVelZ));
-
-			if (speed > sqr(48.0f)) {
-				speed = sqrtf(speed);
-				m->slideVelX = m->slideVelX * 48.0f / speed;
-				m->slideVelZ = m->slideVelZ * 48.0f / speed;
-				speed = 48.0f;
-			}
-			else if (speed > 32.0f) {
-				speed = 32.0f;
-			}
-
-			m->vel[0] = m->slideVelX;
-			m->vel[2] = m->slideVelZ;
-			m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
-			m->forwardVel = speed * coss(m->faceAngle[1] - m->slideYaw);
-			return TRUE;
+			return horizontal_wind_airborne(m, floor, 1.0f);
 		}
 	}
+    /* Original:
+    if (floor->type == SURFACE_HORIZONTAL_WIND) {
+        pushAngle = floor->force << 8;
+
+        m->slideVelX += 1.2f * sins(pushAngle);
+        m->slideVelZ += 1.2f * coss(pushAngle);
+
+        speed = (sqr(m->slideVelX) + sqr(m->slideVelZ));
+
+        if (speed > sqr(48.0f)) {
+            speed = sqrtf(speed);
+            m->slideVelX = m->slideVelX * 48.0f / speed;
+            m->slideVelZ = m->slideVelZ * 48.0f / speed;
+            speed = 48.0f;
+        } else if (speed > 32.0f) {
+            speed = 32.0f;
+        }
+
+        m->vel[0] = m->slideVelX;
+        m->vel[2] = m->slideVelZ;
+        m->slideYaw = atan2s(m->slideVelZ, m->slideVelX);
+        m->forwardVel = speed * coss(m->faceAngle[1] - m->slideYaw);
+        return TRUE;
+    }
+    */
 
     return FALSE;
 }

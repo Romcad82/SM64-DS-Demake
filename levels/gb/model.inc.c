@@ -552,8 +552,8 @@ u8 gb_dl_jack_ci8[] = {
 	
 };
 
-Gfx gb_dl_jack_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_jack_ci8_pal_rgba16[] = {
+Gfx gb_dl_jack_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_jack_pal_rgba16[] = {
 	0x43, 0x49, 0x2a, 0x85, 0x22, 0x43, 0x11, 0xc1, 
 	0x1a, 0x01, 0x3b, 0x87, 0x54, 0x0d, 0x64, 0x8f, 
 	0x74, 0xd3, 0x7d, 0x17, 0x6c, 0x93, 0x54, 0x4d, 
@@ -825,8 +825,8 @@ u8 gb_dl_nenrin_indexed_ci4[] = {
 	
 };
 
-Gfx gb_dl_nenrin_indexed_ci4_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_nenrin_indexed_ci4_pal_rgba16[] = {
+Gfx gb_dl_nenrin_indexed_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_nenrin_indexed_pal_rgba16[] = {
 	0xe6, 0xa5, 0xf7, 0xb1, 0xee, 0xa3, 0xf7, 0x29, 
 	0xf7, 0xad, 0xf7, 0xb5, 0xf7, 0x69, 0xde, 0x21, 
 	0xcd, 0xdd, 0xc5, 0x5b, 0xac, 0x97, 0x93, 0xcf, 
@@ -1095,8 +1095,8 @@ u8 gb_dl_ki_02_64x32_ci8[] = {
 	
 };
 
-Gfx gb_dl_ki_02_64x32_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_ki_02_64x32_ci8_pal_rgba16[] = {
+Gfx gb_dl_ki_02_64x32_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_ki_02_64x32_pal_rgba16[] = {
 	0x82, 0xc3, 0x93, 0x85, 0xa4, 0x09, 0xa3, 0x89, 
 	0xab, 0xcb, 0xb4, 0x4f, 0xa3, 0x47, 0x93, 0x05, 
 	0x9b, 0x47, 0x93, 0x47, 0xac, 0x09, 0xbc, 0x8d, 
@@ -1279,8 +1279,8 @@ u8 gb_dl_renga_ci8[] = {
 	
 };
 
-Gfx gb_dl_renga_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_renga_ci8_pal_rgba16[] = {
+Gfx gb_dl_renga_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_renga_pal_rgba16[] = {
 	0xe6, 0xeb, 0xce, 0x25, 0xb5, 0x1f, 0xbd, 0x1f, 
 	0x9c, 0x59, 0xb4, 0xdf, 0xbd, 0x21, 0xb4, 0xdd, 
 	0xc5, 0xa3, 0xe6, 0xab, 0xe6, 0xa9, 0xcd, 0xe5, 
@@ -1435,8 +1435,8 @@ u8 gb_dl_exm_ami_ci8[] = {
 	
 };
 
-Gfx gb_dl_exm_ami_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_exm_ami_ci8_pal_rgba16[] = {
+Gfx gb_dl_exm_ami_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_exm_ami_pal_rgba16[] = {
 	0xc3, 0x13, 0x61, 0x45, 0x71, 0x43, 0x89, 0xc3, 
 	0x91, 0xc5, 0xa2, 0x03, 0xcb, 0x43, 0xca, 0x87, 
 	0xba, 0x01, 0x91, 0x03, 0x89, 0x41, 0x79, 0x03, 
@@ -1599,8 +1599,8 @@ u8 gb_dl_emm_yuka01_ci8[] = {
 	
 };
 
-Gfx gb_dl_emm_yuka01_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_emm_yuka01_ci8_pal_rgba16[] = {
+Gfx gb_dl_emm_yuka01_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_emm_yuka01_pal_rgba16[] = {
 	0xce, 0x6f, 0xce, 0x6d, 0xce, 0x2d, 0x94, 0x95, 
 	0x8c, 0x91, 0x8c, 0x4f, 0x8c, 0x93, 0x8c, 0x51, 
 	0xc6, 0x2b, 0xc6, 0x2d, 0x8c, 0x8f, 0xc5, 0xeb, 
@@ -1871,8 +1871,8 @@ u8 gb_dl_under_gas_indexed_ci4[] = {
 	
 };
 
-Gfx gb_dl_under_gas_indexed_ci4_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_under_gas_indexed_ci4_pal_rgba16[] = {
+Gfx gb_dl_under_gas_indexed_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_under_gas_indexed_pal_rgba16[] = {
 	0x29, 0x4f, 0x31, 0x91, 0x31, 0xcf, 0x21, 0x0d, 
 	0x4a, 0x55, 0x00, 0x01, 0x21, 0x4b, 0x10, 0x89, 
 	0x18, 0xcb, 0x08, 0x03, 0x18, 0xc7, 0x42, 0x13, 
@@ -2012,8 +2012,8 @@ u8 gb_dl_exm_hasi_ci8[] = {
 	
 };
 
-Gfx gb_dl_exm_hasi_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_exm_hasi_ci8_pal_rgba16[] = {
+Gfx gb_dl_exm_hasi_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_exm_hasi_pal_rgba16[] = {
 	0x30, 0xc1, 0x59, 0xc9, 0x9b, 0x97, 0xb3, 0x93, 
 	0x41, 0x01, 0x49, 0x45, 0x72, 0x4b, 0x93, 0x0f, 
 	0x92, 0xcd, 0x69, 0xc7, 0x28, 0x81, 0x51, 0x45, 
@@ -2172,8 +2172,8 @@ u8 gb_dl_grass_neo_ci8[] = {
 	
 };
 
-Gfx gb_dl_grass_neo_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_grass_neo_ci8_pal_rgba16[] = {
+Gfx gb_dl_grass_neo_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_grass_neo_pal_rgba16[] = {
 	0x14, 0x85, 0x1c, 0xc5, 0x24, 0xc5, 0x1c, 0x85, 
 	0x25, 0x05, 0x35, 0x47, 0x2d, 0x07, 0x2d, 0x05, 
 	0x3d, 0x45, 0x4d, 0x45, 0x14, 0xc5, 0x35, 0x05, 
@@ -2315,8 +2315,8 @@ u8 gb_dl_futi01_ci8[] = {
 	
 };
 
-Gfx gb_dl_futi01_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_futi01_ci8_pal_rgba16[] = {
+Gfx gb_dl_futi01_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_futi01_pal_rgba16[] = {
 	0x24, 0xc5, 0x14, 0x85, 0x2d, 0x05, 0x3d, 0x45, 
 	0x1c, 0xc5, 0x1c, 0x85, 0x45, 0x45, 0x35, 0x05, 
 	0x2c, 0xc5, 0x25, 0x05, 0x24, 0x83, 0x1c, 0x83, 
@@ -2610,8 +2610,8 @@ u8 gb_dl_miti_32x64_ci4[] = {
 	
 };
 
-Gfx gb_dl_miti_32x64_ci4_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_miti_32x64_ci4_pal_rgba16[] = {
+Gfx gb_dl_miti_32x64_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_miti_32x64_pal_rgba16[] = {
 	0xb5, 0x1b, 0x94, 0x15, 0x72, 0x8f, 0x9c, 0x15, 
 	0xa4, 0x97, 0xc5, 0xe5, 0xa4, 0x9b, 0xac, 0x97, 
 	0x83, 0x51, 0x7a, 0xcd, 0xbd, 0x61, 0x83, 0x53, 
@@ -2752,8 +2752,8 @@ u8 gb_dl_wood_rock_ci8[] = {
 	
 };
 
-Gfx gb_dl_wood_rock_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_wood_rock_ci8_pal_rgba16[] = {
+Gfx gb_dl_wood_rock_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_wood_rock_pal_rgba16[] = {
 	0x4a, 0x0d, 0x62, 0xd3, 0x7b, 0x57, 0x7b, 0x99, 
 	0x94, 0x5f, 0x73, 0x57, 0x4a, 0x0f, 0x6b, 0x15, 
 	0x73, 0x15, 0x83, 0xdd, 0x39, 0x89, 0x94, 0x1d, 
@@ -2907,8 +2907,8 @@ u8 gb_dl_exm_saku_ci8[] = {
 	
 };
 
-Gfx gb_dl_exm_saku_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_exm_saku_ci8_pal_rgba16[] = {
+Gfx gb_dl_exm_saku_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_exm_saku_pal_rgba16[] = {
 	0xed, 0xe7, 0xc4, 0x9d, 0xa3, 0xd5, 0xa3, 0xcd, 
 	0x6a, 0x49, 0x00, 0x00, 0xdd, 0x61, 0xac, 0x57, 
 	0x93, 0x51, 0xac, 0x0f, 0x82, 0xcd, 0x8a, 0xcb, 
@@ -3073,8 +3073,8 @@ u8 gb_dl_wood_side_ci8[] = {
 	
 };
 
-Gfx gb_dl_wood_side_ci8_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_wood_side_ci8_pal_rgba16[] = {
+Gfx gb_dl_wood_side_pal_rgba16_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_wood_side_pal_rgba16[] = {
 	0x8c, 0x95, 0x84, 0x51, 0x8c, 0x93, 0x8c, 0x4f, 
 	0xc6, 0x2d, 0xc5, 0xeb, 0x18, 0xc5, 0x18, 0x83, 
 	0x39, 0xc7, 0x29, 0x07, 0x4a, 0x4b, 0x18, 0xc3, 
@@ -3653,8 +3653,8 @@ u8 gb_dl_jack_ci8_copy[] = {
 	
 };
 
-Gfx gb_dl_jack_ci8_pal_rgba16_copy_aligner[] = {gsSPEndDisplayList()};
-u8 gb_dl_jack_ci8_pal_rgba16_copy[] = {
+Gfx gb_dl_jack_pal_rgba16_copy_aligner[] = {gsSPEndDisplayList()};
+u8 gb_dl_jack_pal_rgba16_copy[] = {
 	0x43, 0x49, 0x2a, 0x85, 0x22, 0x43, 0x11, 0xc1, 
 	0x1a, 0x01, 0x3b, 0x87, 0x54, 0x0d, 0x64, 0x8f, 
 	0x74, 0xd3, 0x7d, 0x17, 0x6c, 0x93, 0x54, 0x4d, 
@@ -9704,7 +9704,7 @@ Gfx mat_gb_dl_f3dlite_material[] = {
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 1, gb_dl_k_gas_rgba32),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 128),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -9724,16 +9724,15 @@ Gfx mat_gb_dl_f3dlite_material_012_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_jack_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 30),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_jack_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 30),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_jack_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 127, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 28),
@@ -9744,9 +9743,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_012_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9757,16 +9756,15 @@ Gfx mat_gb_dl_f3dlite_material_036_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_ci4_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 15),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 15),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_ci4),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
@@ -9777,9 +9775,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_036_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9790,16 +9788,15 @@ Gfx mat_gb_dl_f3dlite_material_001_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_ki_02_64x32_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 183),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_ki_02_64x32_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 183),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_ki_02_64x32_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 256),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
@@ -9810,9 +9807,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_001_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9823,16 +9820,15 @@ Gfx mat_gb_dl_f3dlite_material_002_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_renga_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 74),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_renga_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 74),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_renga_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -9843,9 +9839,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_002_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9856,16 +9852,15 @@ Gfx mat_gb_dl_f3dlite_material_003_layer4_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_ami_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 105),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_ami_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 105),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_exm_ami_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -9876,9 +9871,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_003_layer4_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9889,16 +9884,15 @@ Gfx mat_gb_dl_f3dlite_material_004_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_emm_yuka01_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 24),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_emm_yuka01_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 24),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_emm_yuka01_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -9909,9 +9903,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_004_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9922,16 +9916,15 @@ Gfx mat_gb_dl_f3dlite_material_005_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_under_gas_indexed_ci4_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 13),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_under_gas_indexed_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 13),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, gb_dl_under_gas_indexed_ci4),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
@@ -9942,9 +9935,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_005_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9955,16 +9948,15 @@ Gfx mat_gb_dl_f3dlite_material_006_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_hasi_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 88),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_hasi_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 88),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_exm_hasi_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -9975,9 +9967,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_006_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -9988,16 +9980,15 @@ Gfx mat_gb_dl_f3dlite_material_007_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_grass_neo_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 19),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_grass_neo_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 19),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_grass_neo_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -10008,9 +9999,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_007_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10021,16 +10012,15 @@ Gfx mat_gb_dl_f3dlite_material_008_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_futi01_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 117),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_futi01_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 117),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_futi01_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_MIRROR, 4, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 256),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 4, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 60),
@@ -10041,9 +10031,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_008_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10054,16 +10044,15 @@ Gfx mat_gb_dl_f3dlite_material_009_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_miti_32x64_ci4_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 15),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_miti_32x64_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 15),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, gb_dl_miti_32x64_ci4),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
@@ -10074,9 +10063,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_009_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10087,16 +10076,15 @@ Gfx mat_gb_dl_f3dlite_material_010_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_wood_rock_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 70),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_wood_rock_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 70),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_wood_rock_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -10107,9 +10095,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_010_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10120,16 +10108,15 @@ Gfx mat_gb_dl_f3dlite_material_011_layer4_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_saku_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 112),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_exm_saku_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 112),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_exm_saku_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -10140,9 +10127,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_011_layer4_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_CULL_BACK | G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10153,16 +10140,15 @@ Gfx mat_gb_dl_f3dlite_material_035_layer1_area1[] = {
 	gsSPFogPosition(985, 1000),
 	gsSPSetGeometryMode(G_FOG),
 	gsSPClearGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_RGBA16),
 	gsDPSetCycleType(G_CYC_2CYCLE),
 	gsDPSetRenderMode(G_RM_FOG_SHADE_A, G_RM_AA_ZB_OPA_SURF2),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_wood_side_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 84),
-	gsDPLoadSync(),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_wood_side_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 84),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_wood_side_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 511, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_MIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -10173,9 +10159,9 @@ Gfx mat_revert_gb_dl_f3dlite_material_035_layer1_area1[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_FOG),
 	gsSPSetGeometryMode(G_LIGHTING),
+	gsDPSetTextureLUT(G_TT_NONE),
 	gsDPSetCycleType(G_CYC_1CYCLE),
 	gsDPSetRenderMode(G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2),
-	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10185,7 +10171,7 @@ Gfx mat_gb_dl_f3dlite_material_032[] = {
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 1, gb_dl_k_gas_rgba32_copy),
-	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 128),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_32b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
@@ -10202,14 +10188,13 @@ Gfx mat_gb_dl_f3dlite_material_031[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_CULL_BACK | G_LIGHTING),
-	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_jack_ci8_pal_rgba16_copy),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 30),
-	gsDPLoadSync(),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_jack_pal_rgba16_copy),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 30),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_jack_ci8_copy),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 127, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 3, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 28),
@@ -10227,14 +10212,13 @@ Gfx mat_gb_dl_f3dlite_material_033[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_ki_02_64x32_ci8_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 183),
-	gsDPLoadSync(),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_ki_02_64x32_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 183),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 1, gb_dl_ki_02_64x32_ci8),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 256),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 8, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 124),
@@ -10252,14 +10236,13 @@ Gfx mat_gb_dl_f3dlite_material_034[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_ci4_pal_rgba16),
-	gsDPSetTile(0, 0, 0, 256, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadTLUTCmd(7, 15),
-	gsDPLoadSync(),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_pal_rgba16),
+	gsDPSetTile(0, 0, 0, 256, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
+	gsDPLoadTLUTCmd(5, 15),
 	gsDPSetTextureImage(G_IM_FMT_CI, G_IM_SIZ_16b, 1, gb_dl_nenrin_indexed_ci4),
-	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
+	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_16b, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
 	gsDPLoadBlock(7, 0, 0, 1023, 512),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_4b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
@@ -10277,6 +10260,13 @@ Gfx gb_dl_Ignore_Collision_mesh_layer_5[] = {
 	gsSPDisplayList(mat_gb_dl_f3dlite_material),
 	gsSPDisplayList(gb_dl_Ignore_Collision_mesh_layer_5_tri_0),
 	gsSPDisplayList(mat_revert_gb_dl_f3dlite_material),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10324,6 +10314,13 @@ Gfx gb_dl_r0_node_mesh_layer_1[] = {
 	gsSPDisplayList(mat_gb_dl_f3dlite_material_036_layer1_area1),
 	gsSPDisplayList(gb_dl_r0_node_mesh_layer_1_tri_10),
 	gsSPDisplayList(mat_revert_gb_dl_f3dlite_material_036_layer1_area1),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10334,6 +10331,13 @@ Gfx gb_dl_r0_node_mesh_layer_4[] = {
 	gsSPDisplayList(mat_gb_dl_f3dlite_material_011_layer4_area1),
 	gsSPDisplayList(gb_dl_r0_node_mesh_layer_4_tri_1),
 	gsSPDisplayList(mat_revert_gb_dl_f3dlite_material_011_layer4_area1),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10341,6 +10345,13 @@ Gfx gb_dl_Ignore_Collision_001_mesh_layer_5[] = {
 	gsSPDisplayList(mat_gb_dl_f3dlite_material_032),
 	gsSPDisplayList(gb_dl_Ignore_Collision_001_mesh_layer_5_tri_0),
 	gsSPDisplayList(mat_revert_gb_dl_f3dlite_material_032),
+	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_LIGHTING),
+	gsSPClearGeometryMode(G_TEXTURE_GEN),
+	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsSPTexture(65535, 65535, 0, 0, 0),
+	gsDPSetEnvColor(255, 255, 255, 255),
+	gsDPSetAlphaCompare(G_AC_NONE),
 	gsSPEndDisplayList(),
 };
 
@@ -10358,10 +10369,6 @@ Gfx gb_dl_r0_node_001_mesh_layer_1[] = {
 	gsSPDisplayList(mat_gb_dl_f3dlite_material_034),
 	gsSPDisplayList(gb_dl_r0_node_001_mesh_layer_1_tri_1),
 	gsSPDisplayList(mat_revert_gb_dl_f3dlite_material_034),
-	gsSPEndDisplayList(),
-};
-
-Gfx gb_dl_material_revert_render_settings[] = {
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),

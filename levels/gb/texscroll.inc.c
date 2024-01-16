@@ -43,4 +43,4 @@ void scroll_gb_dl_Ignore_Collision_001_mesh_layer_5_vtx_0() {
 void scroll_gb() {
 	scroll_gb_dl_Ignore_Collision_mesh_layer_5_vtx_0();
 	scroll_gb_dl_Ignore_Collision_001_mesh_layer_5_vtx_0();
-}
+};

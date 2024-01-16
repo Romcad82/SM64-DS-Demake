@@ -9,16 +9,13 @@ void bhv_1up_interact(void) {
         gMarioState->breathCounter = 31;
 #endif
 #endif
-
-		if (GET_BPARAM3(o->oBehParams) != 0x01) { // Delete later if decide to make original super mushroom
+#ifdef ENABLE_LIVES
+        if (GET_BPARAM3(o->oBehParams) != 0x01) { // Delete later if decide to make original super mushroom
 			gMarioState->numLives++;
 		} else {
 			gMarioState->healCounter = 31;
 		}
         // Original: gMarioState->numLives++;
-
-#ifdef SAVE_NUM_LIVES
-        save_file_set_num_lives(gMarioState->numLives);
 #endif
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
 #if ENABLE_RUMBLE

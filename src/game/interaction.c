@@ -420,6 +420,8 @@ u32 mario_check_object_grab(struct MarioState *m) {
             if (facingDYaw >= -0x5555 && facingDYaw <= 0x5555) {
                 m->faceAngle[1] = m->interactObj->oMoveAngleYaw;
                 m->usedObj = m->interactObj;
+                m->pos[1] = m->floorHeight;
+                m->vel[1] = 0.0f;
                 result = set_mario_action(m, ACT_PICKING_UP_BOWSER, 0);
             }
         } else {
@@ -743,8 +745,9 @@ u32 interact_coin(struct MarioState *m, UNUSED u32 interactType, struct Object *
 
 #ifdef X_COIN_STAR
     if (COURSE_IS_MAIN_COURSE(gCurrCourseNum) && m->numCoins - obj->oDamageOrCoinValue < X_COIN_STAR
-        && m->numCoins >= X_COIN_STAR) {
+        && m->numCoins >= X_COIN_STAR && !g100CoinStarSpawned) {
         bhv_spawn_star_no_level_exit(STAR_BP_ACT_100_COINS);
+        g100CoinStarSpawned = TRUE;
     }
 #endif
 #if ENABLE_RUMBLE
@@ -778,9 +781,11 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
 #else // !NON_STOP_STARS
     u32 noExit = (obj->oInteractionSubtype & INT_SUBTYPE_NO_EXIT) != 0;
 
+    //
 	if (((gCurrLevelNum == LEVEL_GB) && (gCurrAreaIndex == 1)) || ((gCurrLevelNum == LEVEL_BBB) && (gCurrAreaIndex == 1)) || ((gCurrLevelNum == LEVEL_CCC) && (gCurrAreaIndex == 1)) || (gCurrLevelNum == LEVEL_CASTLE_COURTYARD) || (gCurrLevelNum == LEVEL_CASTLE)) { // Custom fix. Remove later if causes trouble
 		noExit = TRUE;
-	} //
+	}
+    //
 
 #endif // !NON_STOP_STARS
     u32 grandStar = (obj->oInteractionSubtype & INT_SUBTYPE_GRAND_STAR) != 0;
@@ -832,6 +837,8 @@ u32 interact_star_or_key(struct MarioState *m, UNUSED u32 interactType, struct O
         obj->oInteractStatus = INT_STATUS_INTERACTED;
         m->interactObj       = obj;
         m->usedObj           = obj;
+
+        gStarModelLastCollected = obj_get_model_id(obj);
 
 #ifdef GLOBAL_STAR_IDS
         starIndex = (obj->oBehParams >> 24) & 0xFF;
@@ -931,10 +938,11 @@ u32 interact_silver_star(struct MarioState *m, UNUSED u32 interactType, struct O
 			play_silver_star_music(FALSE, obj->parentObj->oPlayUpdatedMusic);
 		}
 		// Original: return set_mario_action(m, starGrabAction, noExit + 2 * grandStar);
-		}
+	}
 
 	return FALSE;
-	}
+}
+    
 
 u32 interact_bbh_entrance(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     if (m->action != ACT_BBH_ENTER_SPIN && m->action != ACT_BBH_ENTER_JUMP) {
@@ -1089,7 +1097,7 @@ u32 get_door_save_file_flag(struct Object *door) {
     return saveFileFlag;
 }
 
-u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) { 
+u32 interact_door(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     s16 requiredNumStars = (obj->oBehParams >> 24);
 #ifndef UNLOCK_ALL
     s16 numStars = save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1);
@@ -1524,6 +1532,11 @@ u32 interact_spiny_walking(struct MarioState *m, UNUSED u32 interactType, struct
     } else if (take_damage_and_knock_back(m, obj)) {
 		return TRUE;
 	}
+    /* Original:
+    } else if (take_damage_and_knock_back(m, obj)) {
+        return TRUE;
+    }
+    */
 
     if (!(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
         sDelayInvincTimer = TRUE;
@@ -1839,11 +1852,14 @@ u32 check_read_sign(struct MarioState *m, struct Object *obj) {
         && abs_angle_diff(mario_obj_angle_to_object(m, obj), m->faceAngle[1]) <= SIGN_RANGE
     ) {
 #ifdef DIALOG_INDICATOR
+        struct Object *orangeNumber;
         if (obj->behavior == segmented_to_virtual(bhvSignOnWall)) {
-            spawn_object_relative(ORANGE_NUMBER_A, 0, 180, 32, obj, MODEL_NUMBER, bhvOrangeNumber);
+            orangeNumber = spawn_object_relative(ORANGE_NUMBER_A, 0, 180, 32, obj, MODEL_NUMBER, bhvOrangeNumber);
         } else {
-            spawn_object_relative(ORANGE_NUMBER_A, 0, 160,  8, obj, MODEL_NUMBER, bhvOrangeNumber);
+            orangeNumber = spawn_object_relative(ORANGE_NUMBER_A, 0, 160,  8, obj, MODEL_NUMBER, bhvOrangeNumber);
         }
+        orangeNumber->oHomeX = orangeNumber->oPosX;
+        orangeNumber->oHomeZ = orangeNumber->oPosZ;
 #endif
         if (m->input & READ_MASK) {
 #else
@@ -1874,11 +1890,14 @@ u32 check_npc_talk(struct MarioState *m, struct Object *obj) {
         && abs_angle_diff(mario_obj_angle_to_object(m, obj), m->faceAngle[1]) <= SIGN_RANGE
     ) {
 #ifdef DIALOG_INDICATOR
+        struct Object *orangeNumber;
         if (obj->behavior == segmented_to_virtual(bhvYoshi)) {
-            spawn_object_relative(ORANGE_NUMBER_A, 0, 256, 64, obj, MODEL_NUMBER, bhvOrangeNumber);
+            orangeNumber = spawn_object_relative(ORANGE_NUMBER_A, 0, 256, 64, obj, MODEL_NUMBER, bhvOrangeNumber);
         } else {
-            spawn_object_relative(ORANGE_NUMBER_A, 0, 160,  0, obj, MODEL_NUMBER, bhvOrangeNumber);
+            orangeNumber = spawn_object_relative(ORANGE_NUMBER_A, 0, 160,  0, obj, MODEL_NUMBER, bhvOrangeNumber);
         }
+        orangeNumber->oHomeX = orangeNumber->oPosX;
+        orangeNumber->oHomeZ = orangeNumber->oPosZ;
 #endif
         if (m->input & READ_MASK) {
 #else

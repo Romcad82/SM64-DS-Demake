@@ -120,7 +120,7 @@ void spawn_mist_particles_variable_at_obj(s32 count, s32 offsetY, f32 size, stru
 #include "behaviors/water_mist.inc.c"
 #include "behaviors/ground_particles.inc.c"
 #include "behaviors/wind.inc.c"
-#include "behaviors/unused_particle_spawn.inc.c"
+//#include "behaviors/unused_particle_spawn.inc.c"
 #include "behaviors/ukiki_cage.inc.c"
 #include "behaviors/falling_rising_platform.inc.c"
 #include "behaviors/fishing_boo.inc.c"
@@ -141,13 +141,11 @@ void spawn_mist_particles_variable_at_obj(s32 count, s32 offsetY, f32 size, stru
 
 // not sure what this is doing here. not in a behavior file.
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx) {
-    Mat4 mtx2;
 
     if (callContext == GEO_CONTEXT_RENDER) {
         struct Object *obj = (struct Object *) gCurGraphNodeObject;
         if (obj == gMarioObject && obj->prevObj != NULL) {
-            create_transformation_from_matrices(mtx2, mtx, *gCurGraphNodeCamera->matrixPtr);
-            obj_update_pos_from_parent_transformation(mtx2, obj->prevObj);
+            obj_update_pos_from_parent_transformation(mtx, obj->prevObj);
             obj_set_gfx_pos_from_pos(obj->prevObj);
         }
     }
@@ -157,7 +155,7 @@ Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *n
 
 #include "behaviors/heave_ho.inc.c"
 #include "behaviors/spawn_star_exit.inc.c"
-#include "behaviors/unused_poundable_platform.inc.c"
+//#include "behaviors/unused_poundable_platform.inc.c"
 #include "behaviors/beta_trampoline.inc.c"
 #include "behaviors/jumping_box.inc.c"
 #include "behaviors/boo_cage.inc.c"
@@ -237,7 +235,7 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/bbh_haunted_bookshelf.inc.c"
 #include "behaviors/bbh_merry_go_round.inc.c"
 #include "behaviors/static_checkered_platform.inc.c"
-#include "behaviors/beta_bowser_anchor.inc.c"
+//#include "behaviors/beta_bowser_anchor.inc.c"
 #include "behaviors/music_touch.inc.c"
 #include "behaviors/castle_floor_trap.inc.c"
 #include "behaviors/pole_base.inc.c"

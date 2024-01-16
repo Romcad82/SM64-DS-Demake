@@ -84,7 +84,13 @@ void bhv_purple_switch_loop(void) {
          * idle state.
          */
         case PURPLE_SWITCH_ACT_UNPRESSED:
-			cur_obj_scale_over_time(SCALE_AXIS_Y, 3, 0.2f, 1.5f);
+
+			if (cur_obj_has_model(MODEL_STAR_SWITCH)) {
+				cur_obj_scale_over_time(SCALE_AXIS_Y, 3, 0.2f, 1.0f);
+			} else {
+				cur_obj_scale_over_time(SCALE_AXIS_Y, 3, 0.2f, 1.5f);
+			}
+            // Original: cur_obj_scale_over_time(SCALE_AXIS_Y, 3, 0.2f, 1.5f);
 
             if (o->oTimer == 3) {
                 o->oAction = PURPLE_SWITCH_ACT_IDLE;
