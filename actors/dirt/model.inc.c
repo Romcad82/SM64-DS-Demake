@@ -9,10 +9,6 @@
 // 0x0302BDB0
 
 // 0x0302BD98
-static const Lights1 dirt_seg3_lights_light_blue = gdSPDefLights1(
-	0x41, 0x4d, 0x5d,
-	0xc3, 0xe3, 0xff, 0x28, 0x28, 0x28
-);
 
 // 0x0302BDC8
 static const Vtx dirt_seg3_vertex_0302BDC8[] = {
@@ -207,8 +203,8 @@ const Gfx dirt_seg3_dl_tiny_particle_billboard[] = {
 
 // 0x0302C3E8 - 0x0302C420
 const Gfx dirt_seg3_dl_tiny_particle_light_blue[] = {
-	gsSPLight(&dirt_seg3_lights_light_blue.l, 1),
-	gsSPLight(&dirt_seg3_lights_light_blue.a, 2),
+    gsSPLightColor(LIGHT_1, 0xc3e3ffff),
+    gsSPLightColor(LIGHT_2, 0x414d5dff),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPVertex(dirt_seg3_vertex_tiny_particle, 3, 0),
 	gsSP1Triangle(0,  1,  2, 0x0),
