@@ -1,6 +1,3 @@
-Lights1 moving_octagonal_mesh_platform_f3dlite_material_002_lights = gdSPDefLights1(
-	0x7F, 0x7F, 0x7F,
-	0xFF, 0xFF, 0xFF, 0x28, 0x28, 0x28);
 
 Gfx moving_octagonal_mesh_platform_paipu_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 moving_octagonal_mesh_platform_paipu_ci8[] = {
@@ -138,7 +135,8 @@ Gfx mat_moving_octagonal_mesh_platform_f3dlite_material_002[] = {
 	gsDPLoadBlock(7, 0, 0, 127, 1024),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 2, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, 0),
 	gsDPSetTileSize(0, 0, 0, 60, 60),
-	gsSPSetLights1(moving_octagonal_mesh_platform_f3dlite_material_002_lights),
+    gsSPLightColor(LIGHT_1, 0xffffffff),
+    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
 	gsSPEndDisplayList(),
 };
 
