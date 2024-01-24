@@ -143,7 +143,7 @@
 /**
  * Eases the textured screen transitions to make them look smoother.
  */
-#define EASE_IN_OUT_TRANSITIONS
+// #define EASE_IN_OUT_TRANSITIONS
 
 /**
  * Uses frustratio of 2 instead of 1.
