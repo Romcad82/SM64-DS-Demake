@@ -88,6 +88,7 @@ void spawn_object_from_another(void) {
 	} else if (o->oBehParams2ndByte == 0x02) {	// Spawn Super Mushroom
 		struct Object *superMushroom = spawn_object(o, MODEL_SUPER, bhv1upWalking);
 		SET_BPARAM3(superMushroom->oBehParams, 0x01);
+		superMushroom->oTimer = -1; // This is so Super Mushroom doesn't touch the ground when spinning in air like Hidden 1up Mushroom
 
 		obj_mark_for_deletion(o);
 	} else if (o->oBehParams2ndByte == 0x03) {	// Spawn Power Star
