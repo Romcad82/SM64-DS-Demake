@@ -6267,7 +6267,10 @@ struct CameraTrigger sCamSi[] = {
 struct CameraTrigger sCamGb[] = {
 	{1, cam_gb_walljump, 3200, 5000, 6100, 200, 100, 300, 0xffff},
 	{1, cam_gb_fixed, 2052, 5250, 2600, 100, 400, 300, 0xffff},
+	{1, cam_gb_free_roam, 2900, 5500, 6100, 100, 1000, 500, 0xffff},
 	{1, cam_gb_free_roam, 1852, 5250, 2600, 100, 400, 300, 0xffff},
+	{1, cam_gb_free_roam, 3200, 5500, 5700, 200, 1000, 100, 0xffff},
+	{1, cam_gb_free_roam, 3200, 5500, 6500, 200, 1000, 100, 0xffff},
 	{1, cam_gb_free_roam, 3200, 4700, 6100, 200, 200, 300, 0xffff},
 	NULL_TRIGGER
 };
