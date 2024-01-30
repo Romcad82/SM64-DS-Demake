@@ -42,46 +42,52 @@ void bhv_hidden_star_loop(void) {
     }
 }
 
+static void drop_silver_star_function() {
+	/*
+		If Mario gets hit, spawn a silver star (& silver number) where Mario is.
+			
+		Note: Following files were changed so Silver Stars could work:
+			interaction.c: 720
+	*/
+
+	if (o->oHiddenStarTriggerCounter == 0) {
+		o->oSpawnSilverStar = FALSE;
+	}
+
+	// Spawn Silver Star if Mario gets knocked down onto ground. Also check if Silver Star should be spawned
+	if (((gMarioState->action >= ACT_HARD_BACKWARD_GROUND_KB) && (gMarioState->action <= ACT_SOFT_FORWARD_GROUND_KB)) && (o->oSpawnSilverStar == TRUE)) {
+		o->oHiddenStarTriggerCounter--;
+		o->oPlayUpdatedMusic--;
+
+		struct Object *silverStar = spawn_object_relative(0x01, (-o->oPosX + gMarioObject->oPosX), (-o->oPosY + gMarioObject->oPosY), (-o->oPosZ + gMarioObject->oPosZ), o, MODEL_SILVER_STAR, bhvSilverStar);
+		silverStar->oMoveAngleYaw = o->oAngleToMario + 0x8000;
+		silverStar->oForwardVel = 15.0f;
+
+#ifdef DIALOG_INDICATOR
+		spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_F + 1)), gMarioObject->oPosX, (gMarioObject->oPosY + 175.0f), gMarioObject->oPosZ);
+#else
+		spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_9 + 1)), gMarioObject->oPosX, (gMarioObject->oPosY + 175.0f), gMarioObject->oPosZ);
+#endif
+
+		play_silver_star_music(TRUE, 0);
+
+		// Don't let silver star spawn multiple times
+		o->oSpawnSilverStar = FALSE;
+	}
+}
+
 void bhv_silvers_hidden_star_loop(void) {
 	switch (o->oAction) {
+
+	// Before Star Spawns, wait until collected all silvers then change action to spawn star
 	case 0:
 		if (o->oHiddenStarTriggerCounter == 5) {
 			o->oAction = 1;
 		}
 		
-		/*
-			If Mario gets hit, spawn a silver star (& silver number) where Mario is.
-			
-			Note: Following files were changed so Silver Stars could work:
-				interaction.c: 718
-		*/
-
-		if (o->oHiddenStarTriggerCounter == 0) {
-			o->oSpawnSilverStar = FALSE;
-		}
-
-		// Spawn Silver Star if Mario gets knocked down onto ground. Also check if Silver Star should be spawned
-		if (((gMarioState->action >= ACT_HARD_BACKWARD_GROUND_KB) && (gMarioState->action <= ACT_SOFT_FORWARD_GROUND_KB)) && (o->oSpawnSilverStar == TRUE)) {
-			o->oHiddenStarTriggerCounter--;
-			o->oPlayUpdatedMusic--;
-
-			struct Object *silverStar = spawn_object_relative(0x01, (-o->oPosX + gMarioObject->oPosX), (-o->oPosY + gMarioObject->oPosY), (-o->oPosZ + gMarioObject->oPosZ), o, MODEL_SILVER_STAR, bhvSilverStar);
-			silverStar->oMoveAngleYaw = o->oAngleToMario + 0x8000;
-			silverStar->oForwardVel = 15.0f;
-
-			#ifdef DIALOG_INDICATOR
-			spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_F + 1)), gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ);
-			#else
-			spawn_orange_number_at_pos((o->oHiddenStarTriggerCounter + (ORANGE_NUMBER_9 + 1)), gMarioObject->oPosX, gMarioObject->oPosY, gMarioObject->oPosZ);
-			#endif
-
-			play_silver_star_music(TRUE, 0);
-
-			// Don't let silver star spawn multiple times
-			o->oSpawnSilverStar = FALSE;
-		}
 		break;
 
+	// Spawn Star after waiting 15 frames
 	case 1:
 		if (o->oTimer > 15) {
 			o->parentObj = spawn_and_return_silver_star_cutscene_star(o->oPosX, o->oPosY, o->oPosZ);
@@ -89,6 +95,7 @@ void bhv_silvers_hidden_star_loop(void) {
 		}
 		break;
 
+	// Star can be collected, but if Mario gets hit, drop star and change action
 	case 2:
 		if (gMarioState->action & ACT_FLAG_AIR) {
 			cur_obj_become_intangible();
@@ -101,7 +108,34 @@ void bhv_silvers_hidden_star_loop(void) {
 			cur_obj_play_sound_2(SOUND_GENERAL_BREAK_BOX); // temp
 			o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
 		}
+
+		if (o->oHiddenStarTriggerCounter < 5) {
+			o->oAction = 3;
+		}
+
+		break;
+
+	// Similar to case 0, but star has already spawned, so change into different action when all silvers collected
+	case 3:
+		if (o->oTimer == 60) {
+			o->parentObj->oAction = 5;
+		} else if (o->oTimer > 60) {
+			if (o->oHiddenStarTriggerCounter == 5) {
+				o->oAction = 4;
+			}
+		}
+		break;
+
+	// Similar to case 1, but star has already spawned, so change star action then go back to case 2
+	case 4:
+		if (o->oTimer > 15) {
+			o->parentObj->oAction = 4;
+			o->oAction = 2;
+		}
+		break;
 	}
+
+	drop_silver_star_function();
 }
 
 void bhv_hidden_switch_star_init(void) {

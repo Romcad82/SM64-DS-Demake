@@ -57,7 +57,6 @@ void bhv_star_spawn_init(void) {
 
 	} else if (o->oBehParams2ndByte == 2) {
 		o->oAction = 4;
-		cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
 	} else {
 		o->oAction = SPAWN_STAR_ARC_CUTSCENE_ACT_END;
 	}
@@ -142,11 +141,10 @@ void bhv_star_spawn_loop(void) {
 			o->oFaceAngleYaw += 0x800;
 
 			if (o->oTimer == 0) {
-				if (o->oBehParams2ndByte == 3) {
-					cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
-					set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
-					o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
-				}
+				cutscene_object(CUTSCENE_RED_COIN_STAR_SPAWN, o);
+				set_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_MARIO_AND_DOORS);
+				o->activeFlags |= ACTIVE_FLAG_INITIATED_TIME_STOP;
+                
 				cur_obj_unhide();
 				cur_obj_scale(0.0f);
 			}
@@ -164,7 +162,7 @@ void bhv_star_spawn_loop(void) {
 
 			break;
 
-		case 5: // For Star Switch's Hidden Star to Disappear
+		case 5: // For Silver Star's & Star Switch's Hidden Star to Disappear
 			o->oFaceAngleYaw += 0x800;
 
 			if (o->oTimer == 0) {
