@@ -42,7 +42,7 @@ void bhv_hidden_star_loop(void) {
     }
 }
 
-static void drop_silver_star_function() {
+static void drop_silver_star_function(void) {
 	/*
 		If Mario gets hit, spawn a silver star (& silver number) where Mario is.
 			
