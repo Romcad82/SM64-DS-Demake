@@ -464,6 +464,7 @@ void bhv_swoop_update(void);
 void bhv_fly_guy_update(void);
 void bhv_goomba_init(void);
 void bhv_goomba_boss_init(void);
+void bhv_goomba_minion_init(void);
 void bhv_goomba_update(void);
 void bhv_goomba_boss_update(void);
 void bhv_goomba_boss_handler_update(void);

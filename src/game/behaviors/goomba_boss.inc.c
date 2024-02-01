@@ -3,15 +3,27 @@
  * Hitbox for goomba.
  */
 static struct ObjectHitbox sGoombaBossHitbox = {
-	/* interactType:      */ INTERACT_BOUNCE_TOP,
-	/* downOffset:        */ 0,
-	/* damageOrCoinValue: */ 1,
-	/* health:            */ 0,
-	/* numLootCoins:      */ 1,
+	/* interactType:      */ INTERACT_SPINY_WALKING,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 1,
 	/* radius:            */ 43,
-	/* height:            */ 70,
-	/* hurtboxRadius:     */ 42,
-	/* hurtboxHeight:     */ 60,
+    /* height:            */ 70,
+    /* hurtboxRadius:     */ 42,
+    /* hurtboxHeight:     */ 60,
+};
+
+static struct ObjectHitbox sGoombaMinionHitbox = {
+    /* interactType:      */ INTERACT_BOUNCE_TOP,
+    /* downOffset:        */ 0,
+    /* damageOrCoinValue: */ 1,
+    /* health:            */ 0,
+    /* numLootCoins:      */ 1,
+    /* radius:            */ 72,
+    /* height:            */ 50,
+    /* hurtboxRadius:     */ 42,
+    /* hurtboxHeight:     */ 40,
 };
 
 /**
@@ -88,16 +100,11 @@ static u8 sGoombaBossAttackHandlers[][6] = {
     },
 };
 
-/**
- * Initialization function for goomba.
- */
-void bhv_goomba_boss_init(void) {
+static void set_goomba_properties(void) {
 	o->oGoombaSize = o->oBehParams2ndByte & GOOMBA_BP_SIZE_MASK;
 
     o->oGoombaScale = sGoombaBossProperties[o->oGoombaSize].scale;
     o->oDeathSound = sGoombaBossProperties[o->oGoombaSize].deathSound;
-	
-	obj_set_hitbox(o, &sGoombaBossHitbox);
 
     o->oDrawingDistance = sGoombaBossProperties[o->oGoombaSize].drawDistance;
     o->oDamageOrCoinValue = sGoombaBossProperties[o->oGoombaSize].damage;
@@ -105,19 +112,30 @@ void bhv_goomba_boss_init(void) {
 	o->parentObj = cur_obj_nearest_object_with_behavior(bhvGoombaBossHandler);
 
 	o->oHomeX = lateral_dist_between_objects(o, o->parentObj);
+}
 
-	if (cur_obj_has_behavior(bhvGoombaMinion)) {
-		o->oGravity = -8.0f / 3.0f * o->oGoombaScale;
-		spawn_mist_particles();
-	}
+/**
+ * Initialization function for goomba.
+ */
+void bhv_goomba_boss_init(void) {
+	set_goomba_properties();
 
-	if (cur_obj_has_behavior(bhvGoombaBoss)) {
-		o->oGravity = -5.0f; // -2.0f / 3.0f * o->oGoombaScale
+	obj_set_hitbox(o, &sGoombaBossHitbox);
 
-		o->oHitNumber = 0;
-		o->oCurrDirection = 0x0;
-		o->oAction = 5;
-	}
+	o->oGravity = -5.0f; // -2.0f / 3.0f * o->oGoombaScale
+
+	o->oHitNumber = 0;
+	o->oCurrDirection = 0x0;
+	o->oAction = 5;
+}
+
+void bhv_goomba_minion_init(void) {
+	set_goomba_properties();
+
+	obj_set_hitbox(o, &sGoombaMinionHitbox);
+
+	o->oGravity = -8.0f / 3.0f * o->oGoombaScale;
+	spawn_mist_particles();
 }
 
 static void goomba_boss_turning(void) {
@@ -431,6 +449,7 @@ void boss_goomba_spawn_mushroom(void) {
 	if (o->oNumLootCoins == 1) {
 		struct Object *superMushroom = spawn_object(o, MODEL_SUPER, bhv1upWalking);
 		SET_BPARAM3(superMushroom->oBehParams, 0x01);
+		vec3f_copy(&superMushroom->oPosVec, &gMarioObject->oPosVec);
 		o->oNumLootCoins = 0;
 	}
 	o->oGoombaPrevAction = o->oAction;
@@ -452,6 +471,18 @@ static void goomba_hit_boss(struct Object *goomba) {
 void bhv_goomba_boss_update(void) {
     // PARTIAL_UPDATE
 
+	if ((o->oAction == OBJ_ACT_SQUISHED) && (cur_obj_has_behavior(bhvGoombaBoss))) {
+		hit_goomba_boss();
+
+		if (cur_obj_nearest_object_with_behavior(bhvGoombaMinion)) {
+			obj_mark_for_deletion(cur_obj_nearest_object_with_behavior(bhvGoombaMinion));
+		}
+
+		if (cur_obj_nearest_object_with_behavior(bhvGoomba)) {
+			obj_mark_for_deletion(cur_obj_nearest_object_with_behavior(bhvGoomba));
+		}
+	}
+	
     f32 animSpeed;
 
     if (obj_update_standard_actions(o->oGoombaScale)) {
@@ -490,11 +521,20 @@ void bhv_goomba_boss_update(void) {
 				break;
         }
 
-		if (obj_handle_attacks(&sGoombaBossHitbox, GOOMBA_ACT_ATTACKED_MARIO,
-			sGoombaBossAttackHandlers[o->oGoombaSize & 0x1])
-			&& (o->oAction != GOOMBA_ACT_ATTACKED_MARIO)) {
-			mark_goomba_boss_as_dead();
+		if (cur_obj_has_behavior(bhvGoombaBoss)) {
+			if (obj_handle_attacks(&sGoombaBossHitbox, GOOMBA_ACT_ATTACKED_MARIO,
+				sGoombaBossAttackHandlers[o->oGoombaSize & 0x1])
+				&& (o->oAction != GOOMBA_ACT_ATTACKED_MARIO)) {
+				mark_goomba_boss_as_dead();
+			}
+		} else {
+			if (obj_handle_attacks(&sGoombaMinionHitbox, GOOMBA_ACT_ATTACKED_MARIO,
+				sGoombaBossAttackHandlers[o->oGoombaSize & 0x1])
+				&& (o->oAction != GOOMBA_ACT_ATTACKED_MARIO)) {
+				mark_goomba_boss_as_dead();
+			}
 		}
+		
 		if ((cur_obj_has_behavior(bhvGoombaBoss)) && (cur_obj_nearest_object_with_behavior(bhvGoombaMinion))) {
 			goomba_hit_boss(cur_obj_nearest_object_with_behavior(bhvGoombaMinion));
 		}
@@ -507,26 +547,8 @@ void bhv_goomba_boss_update(void) {
         o->oAnimState = GOOMBA_ANIM_STATE_EYES_CLOSED;
     }
 
-	if (((o->oForwardVel <= 10.0f) && (o->oAction == GOOMBA_ACT_WAIT)) || (cur_obj_has_behavior(bhvGoombaMinion))) {
-		o->oInteractType = INTERACT_BOUNCE_TOP;
-	} else {
-		o->oInteractType = INTERACT_SPINY_WALKING;
-	}
-
 	if ((o->oPosY <= 250.0f) && (cur_obj_has_behavior(bhvGoombaMinion))) {
 		obj_die_if_health_non_positive();
-	}
-
-	if ((o->oAction == OBJ_ACT_SQUISHED) && (cur_obj_has_behavior(bhvGoombaBoss))) {
-		hit_goomba_boss();
-
-		if (cur_obj_nearest_object_with_behavior(bhvGoombaMinion)) {
-			obj_mark_for_deletion(cur_obj_nearest_object_with_behavior(bhvGoombaMinion));
-		}
-
-		if (cur_obj_nearest_object_with_behavior(bhvGoomba)) {
-			obj_mark_for_deletion(cur_obj_nearest_object_with_behavior(bhvGoomba));
-		}
 	}
 }
 

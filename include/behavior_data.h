@@ -353,7 +353,7 @@ extern const BehaviorScript bhvHomingAmp[];
 extern const BehaviorScript bhvCirclingAmp[];
 extern const BehaviorScript bhvButterfly[];
 extern const BehaviorScript bhvHoot[];
-extern const BehaviorScript bhvBetaHoldableObject[];
+//extern const BehaviorScript bhvBetaHoldableObject[];
 extern const BehaviorScript bhvCarrySomethingHeld[];
 extern const BehaviorScript bhvCarrySomethingDropped[];
 extern const BehaviorScript bhvCarrySomethingThrown[];
