@@ -22,9 +22,10 @@
 /**
  * An array consisting of all the hardcoded rectangle shadows in the game.
  */
-static ShadowRectangle sShadowRectangles[2] = {
+static ShadowRectangle sShadowRectangles[3] = {
     { 7.2f, 4.6f, TRUE }, // Spindel
     { 4.0f, 3.6f, TRUE }, // Whomp
+    { 170.0f, 250.0f, FALSE }, // BBB_Path_Controlled_Lift
 };
 
 struct Shadow gCurrShadow;
@@ -212,13 +213,13 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
         //! Some objects only get their oFloor from bhv_init_room, which skips dynamic floors.
         floor       = obj->oFloor;
         floorHeight = obj->oFloorHeight;
-
+        
 		//
 		if ((obj->oVelX != 0) || (obj->oVelZ != 0)) { // To fix objects w/ velocities causing shadows to clip into ground. Seems to work fine, but change if notice other objects break.
 			floorHeight = find_floor_height(obj->oPosX, obj->oPosY, obj->oPosZ);
 		}
 		//
-
+        
     } else {
         // The object has no referenced floor, so find a new one.
         // gCollisionFlags |= COLLISION_FLAG_RETURN_FIRST;
@@ -366,6 +367,21 @@ Gfx *create_shadow_below_xyz(Vec3f pos, s16 shadowScale, u8 shadowSolidity, s8 s
             s8 idx = shadowType - SHADOW_RECTANGLE_HARDCODED_OFFSET;
             s->scale[0] *= sShadowRectangles[idx].scaleX;
             s->scale[2] *= sShadowRectangles[idx].scaleZ;
+            
+            // If shadow is BBB Path Controlled Lift. This is so shadow has consistant shadow size & rotates shadow. If statement below isn't responsible for shadow scaling with distance like it seems to imply; it seems to do nothing actually.
+            if (idx == 2) {
+                // If obj is facing 0 degrees.
+                if (obj->oMoveAngleYaw == 0x0) {
+                    s->scale[0] = sShadowRectangles[idx].scaleX;
+                    s->scale[2] = sShadowRectangles[idx].scaleZ;
+                // If obj is facing 90 degrees.
+                } else if (obj->oMoveAngleYaw == 0x4000) {
+                    s->scale[0] = sShadowRectangles[idx].scaleZ;
+                    s->scale[2] = sShadowRectangles[idx].scaleX;
+                }
+            }
+            //
+            
             if (sShadowRectangles[idx].scaleWithDistance) {
                 scale_shadow_with_distance(s->scale[0], distToShadow);
                 scale_shadow_with_distance(s->scale[2], distToShadow);

@@ -1,9 +1,13 @@
 extern const GeoLayout bbb_path_controlled_lift_geo[];
+extern Lights1 bbb_path_controlled_lift_f3dlite_material_lights;
 extern u8 bbb_path_controlled_lift_normal_lift07_cmp4_ci8[];
-extern u8 bbb_path_controlled_lift_normal_lift07_cmp4_ci8_pal_rgba16[];
-extern Vtx bbb_path_controlled_lift_world_root_node_mesh_layer_4_vtx_0[44];
+extern u8 bbb_path_controlled_lift_normal_lift07_cmp4_pal_rgba16[];
+extern Vtx bbb_path_controlled_lift_world_root_node_mesh_layer_4_vtx_0[28];
 extern Gfx bbb_path_controlled_lift_world_root_node_mesh_layer_4_tri_0[];
+extern Vtx bbb_path_controlled_lift_world_root_node_mesh_layer_4_vtx_1[16];
+extern Gfx bbb_path_controlled_lift_world_root_node_mesh_layer_4_tri_1[];
+extern Gfx mat_bbb_path_controlled_lift_f3dlite_material[];
+extern Gfx mat_revert_bbb_path_controlled_lift_f3dlite_material[];
 extern Gfx mat_bbb_path_controlled_lift_f3dlite_material_004[];
 extern Gfx mat_revert_bbb_path_controlled_lift_f3dlite_material_004[];
 extern Gfx bbb_path_controlled_lift_world_root_node_mesh_layer_4[];
-extern Gfx bbb_path_controlled_lift_material_revert_render_settings[];
