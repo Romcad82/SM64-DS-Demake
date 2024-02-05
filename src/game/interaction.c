@@ -1348,6 +1348,7 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
 			if ((random_u16() % (100 * obj->oCoinChanceMult)) == 0) {
 				struct Object *superMushroom = spawn_object(obj, MODEL_SUPER, bhv1upWalking);
 				SET_BPARAM3(superMushroom->oBehParams, 0x01);
+                superMushroom->oTimer = -1;
 				obj->oCanDropCoins = FALSE;
 			} else if ((random_u16() % (25 * obj->oCoinChanceMult)) == 0) {
 				obj->oNumLootCoins = 2;

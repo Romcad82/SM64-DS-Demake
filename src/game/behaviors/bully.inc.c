@@ -390,6 +390,41 @@ void bhv_bully_loop(void) {
     set_object_visibility(o, 3000);
 }
 
+static void cc_final_hit_stun(void) {
+    s16 collisionFlags = object_step();
+	o->oCanDropCoins = FALSE;
+
+	if (o->oTimer == 0) {
+		o->oPosX = o->oBullyPrevX * 0.97f;
+		o->oPosY = o->oBullyPrevY;
+		o->oPosZ = o->oBullyPrevZ * 0.97f;
+		o->oFlags |= OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
+		obj_turn_toward_object(o, cur_obj_nearest_object_with_behavior(bhvFallingIcePlatformA), O_MOVE_ANGLE_YAW_INDEX, 0x7FFF);
+		o->oForwardVel = 0.0f;
+		o->oVelY = 0.0f;
+	} else if (o->oTimer < 90) {
+		o->oPosY = o->oBullyPrevY;
+		o->oGravity = 0.0f;
+	} else if (o->oTimer == 90) {
+		o->oGravity = 5.0f;
+		cur_obj_become_intangible();
+		o->oForwardVel = 40.0f;
+		o->oVelY = 80.0f;
+	} else if ((o->oTimer > 90) && !(collisionFlags & OBJ_COL_FLAG_GROUNDED)) {
+		if (o->oVelY < 0.0f) {
+			o->prevObj->oCollisionDistance = 1000.0f;
+		}
+		cur_obj_become_intangible();
+	} else if (collisionFlags & OBJ_COL_FLAG_GROUNDED) {
+		o->oFinalDeathCheck = FALSE;
+		cur_obj_become_tangible();
+		spawn_triangle_break_particles(30, MODEL_DIRT_ANIMATION, 3.0f, TINY_DIRT_PARTICLE_ANIM_STATE_LIGHT_BLUE);
+		cur_obj_play_sound_2(SOUND_OBJ_POUNDING1);
+		o->oVelY = 0.1f;
+		o->oAction = BULLY_ACT_PATROL;
+	}
+}
+
 void bhv_chief_chilly_loop(void) {
     vec3f_copy(&o->oBullyPrevVec, &o->oPosVec);
 
@@ -463,38 +498,7 @@ void bhv_chief_chilly_loop(void) {
 			break;
 
 		case 8:
-			s16 collisionFlags = object_step();
-			o->oCanDropCoins = FALSE;
-
-			if (o->oTimer == 0) {
-				o->oPosX = o->oBullyPrevX * 0.97f;
-				o->oPosY = o->oBullyPrevY;
-				o->oPosZ = o->oBullyPrevZ * 0.97f;
-				o->oFlags |= OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW;
-				obj_turn_toward_object(o, cur_obj_nearest_object_with_behavior(bhvFallingIcePlatformA), O_MOVE_ANGLE_YAW_INDEX, 0x7FFF);
-				o->oForwardVel = 0.0f;
-				o->oVelY = 0.0f;
-			} else if (o->oTimer < 90) {
-				o->oPosY = o->oBullyPrevY;
-				o->oGravity = 0.0f;
-			} else if (o->oTimer == 90) {
-				o->oGravity = 5.0f;
-				cur_obj_become_intangible();
-				o->oForwardVel = 40.0f;
-				o->oVelY = 80.0f;
-			} else if ((o->oTimer > 90) && !(collisionFlags & OBJ_COL_FLAG_GROUNDED)) {
-				if (o->oVelY < 0.0f) {
-					o->prevObj->oCollisionDistance = 1000.0f;
-				}
-				cur_obj_become_intangible();
-			} else if (collisionFlags & OBJ_COL_FLAG_GROUNDED) {
-				o->oFinalDeathCheck = FALSE;
-				cur_obj_become_tangible();
-				spawn_triangle_break_particles(30, MODEL_DIRT_ANIMATION, 3.0f, TINY_DIRT_PARTICLE_ANIM_STATE_LIGHT_BLUE);
-				cur_obj_play_sound_2(SOUND_OBJ_POUNDING1);
-				o->oVelY = 0.1f;
-				o->oAction = BULLY_ACT_PATROL;
-			}
+			cc_final_hit_stun();
 			break;
 
         case OBJ_ACT_LAVA_DEATH:
