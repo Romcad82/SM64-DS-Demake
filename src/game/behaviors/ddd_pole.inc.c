@@ -20,4 +20,8 @@ void bhv_ddd_pole_update(void) {
     }
 
     obj_set_dist_from_home(o->oDDDPoleOffset);
+
+    //
+    cur_obj_update_floor_and_walls();
+    //
 }
