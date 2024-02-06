@@ -138,6 +138,10 @@ static void camera_lakitu_intro_act_show_dialog(void) {
  */
 void bhv_camera_lakitu_update(void) {
     if (!(o->activeFlags & ACTIVE_FLAG_IN_DIFFERENT_ROOM)) {
+        //
+        cur_obj_update_floor_and_walls();
+        //
+
         obj_update_blinking(&o->oCameraLakituBlinkTimer, 20, 40, 4);
 
         if (o->oBehParams2ndByte != CAMERA_LAKITU_BP_FOLLOW_CAMERA) {
