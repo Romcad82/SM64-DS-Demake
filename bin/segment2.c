@@ -2036,6 +2036,10 @@ ALIGNED8 static const Texture texture_hud_char_5_s[] = {
 #include "textures/segment2/segment2.00A00_s.rgba16.inc.c"
 };
 
+ALIGNED8 static const Texture texture_menu_silver_star[] = {
+#include "textures/segment2/segment2.silver_star.rgba16.inc.c"
+};
+
 // Main HUD print table 0x02008250-0x02008337
 const Texture *const main_hud_lut[] = {
     texture_hud_char_0, texture_hud_char_1, texture_hud_char_2, texture_hud_char_3,
@@ -2054,6 +2058,7 @@ const Texture *const main_hud_lut[] = {
     texture_hud_char_mario_head, texture_hud_char_star, texture_hud_char_decimal_point, texture_hud_char_beta_key,
     texture_hud_char_apostrophe, texture_hud_char_double_quote, texture_hud_char_umlaut,
 	texture_hud_char_0_s, texture_hud_char_1_s, texture_hud_char_2_s, texture_hud_char_3_s, texture_hud_char_4_s, texture_hud_char_5_s,
+    texture_menu_silver_star,
 };
 
 // Main small font print table 0x02008338-0x02008737

@@ -136,6 +136,8 @@ void bhv_silvers_hidden_star_loop(void) {
 	}
 
 	drop_silver_star_function();
+
+	gSilverStarsCollected = o->oHiddenStarTriggerCounter;
 }
 
 void bhv_hidden_switch_star_init(void) {

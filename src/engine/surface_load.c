@@ -434,6 +434,9 @@ void alloc_surface_pools(void) {
 
     gCCMEnteredSlide = FALSE;
     reset_red_coins_collected();
+    //
+    reset_silver_stars_collected();
+    //
 }
 
 #ifdef NO_SEGMENTED_MEMORY

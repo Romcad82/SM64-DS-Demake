@@ -39,6 +39,9 @@ u16 gDialogTextAlpha;
 s16 gCutsceneMsgXOffset;
 s16 gCutsceneMsgYOffset;
 s8 gRedCoinsCollected;
+//
+s8 gSilverStarsCollected;
+//
 #if defined(WIDE) && !defined(PUPPYCAM)
 u8 textCurrRatio43[] = { TEXT_HUD_CURRENT_RATIO_43 };
 u8 textCurrRatio169[] = { TEXT_HUD_CURRENT_RATIO_169 };
@@ -675,6 +678,17 @@ void print_hud_my_score_stars(s8 fileIndex, s8 courseIndex, s16 x, s16 y) {
         print_hud_lut_string(HUD_LUT_GLOBAL, x + 32, y, strStarCount);
     }
 }
+
+//
+void print_menu_silver_stars(void) {
+    u8 textSymStar[] = { GLYPH_SILVER_STAR, GLYPH_SPACE };
+    s8 x;
+
+    for (x = 0; x < gSilverStarsCollected; x++) {
+        print_hud_lut_string(HUD_LUT_GLOBAL, ((GFX_DIMENSIONS_FROM_RIGHT_EDGE(30) - x * 20) - 8), 188, textSymStar);
+    }
+}
+//
 
 void int_to_str(s32 num, u8 *dst) {
     s32 digit[3];
@@ -1459,6 +1473,12 @@ void reset_red_coins_collected(void) {
     gRedCoinsCollected = 0;
 }
 
+//
+void reset_silver_stars_collected(void) {
+    gSilverStarsCollected = 0;
+}
+//
+
 void change_dialog_camera_angle(void) {
     if (cam_select_alt_mode(0) == CAM_SELECTION_MARIO) {
         gDialogCameraAngleIndex = CAM_SELECTION_MARIO;
@@ -1611,6 +1631,10 @@ void render_pause_my_score_coins(void) {
         print_hud_my_score_coins(1, gCurrSaveFileNum - 1, courseIndex, 178, 103);
         print_hud_my_score_stars(gCurrSaveFileNum - 1, courseIndex, 118, 103);
     }
+    
+    //
+    print_menu_silver_stars();
+    //
 
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
