@@ -14,7 +14,7 @@ void bhv_yoshi_init(void) {
 #if !defined(ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS) || defined(UNLOCK_ALL)
     if (sYoshiDead == TRUE) {
 #else
-    if ((save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_MIN), COURSE_NUM_TO_INDEX(COURSE_MAX)) < 120)
+    if ((save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_MIN), COURSE_NUM_TO_INDEX(COURSE_MAX)) < 133) // Original: if ((save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(COURSE_MIN), COURSE_NUM_TO_INDEX(COURSE_MAX)) < 120)
         || sYoshiDead == TRUE) {
 #endif
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
@@ -197,4 +197,8 @@ void bhv_yoshi_loop(void) {
     }
 
     curr_obj_random_blink(&o->oYoshiBlinkTimer);
+
+    //
+    cur_obj_update_floor_and_walls();
+    //
 }
