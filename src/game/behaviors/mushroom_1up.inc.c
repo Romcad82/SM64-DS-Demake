@@ -2,7 +2,7 @@
 
 void bhv_1up_interact(void) {
     if (obj_check_if_collided_with_object(o, gMarioObject)) {
-        play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
+        // Original: play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
 #ifdef MUSHROOMS_HEAL
         gMarioState->healCounter   = 31;
 #ifdef BREATH_METER
@@ -11,8 +11,10 @@ void bhv_1up_interact(void) {
 #endif
 #ifdef ENABLE_LIVES
         if (GET_BPARAM3(o->oBehParams) != 0x01) { // Delete later if decide to make original super mushroom
+            play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
 			gMarioState->numLives++;
 		} else {
+            play_sound_if_no_flag(gMarioState, SOUND_MENU_EXIT_PIPE, MARIO_ACTION_SOUND_PLAYED);
 			gMarioState->healCounter = 31;
 		}
         // Original: gMarioState->numLives++;
