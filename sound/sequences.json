@@ -42,5 +42,6 @@
 	"27_ss2_custom": ["27_custom"],
 	"28_ss3_custom": ["27_custom"],
 	"29_ss4_custom": ["27_custom"],
-	"2A_ss5_custom": ["27_custom"]
+	"2A_ss5_custom": ["27_custom"],
+	"2B_wakeup_custom": ["0C_extended_bank"]
 }

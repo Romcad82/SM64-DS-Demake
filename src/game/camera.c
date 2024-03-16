@@ -9482,6 +9482,9 @@ void cutscene_intro_peach_mario_appears(struct Camera *c) {
     // Make the camera look up as Mario jumps out of the pipe
     if (c->focus[1] < sCutsceneVars[1].point[1]) {
         c->focus[1] = sCutsceneVars[1].point[1];
+        //
+        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(15, SEQ_EVENT_WAKEUP), 0);
+        //
     }
 
     sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
