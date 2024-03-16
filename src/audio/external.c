@@ -104,7 +104,7 @@ u8 sDialogSpeaker[] = {
     /*15*/ WIGLR, WIGLR, WIGLR, _,     _,     _,     _,     _,     _,     _,
     /*16*/ _,     YOSHI, _,     _,     _,     _,     _,     _,     WIGLR, _,
 	/*17*/ _,	  BOMB,	 _,		_,	   _,	  _,	 BOWS1,	_,	   _,	  BOWS1,
-	/*18*/ _,	  KBOMB, KBOMB, BOO,   BOO,	  _,	 _
+	/*18*/ _,	  KBOMB, KBOMB, BOO,   BOO,	  _,	 _,     _,     _
 };
 #undef _
 STATIC_ASSERT(ARRAY_COUNT(sDialogSpeaker) == DIALOG_COUNT,

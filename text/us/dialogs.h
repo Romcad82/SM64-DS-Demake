@@ -2308,3 +2308,64 @@ You might be gifted\n\
 follically, but you better\n\
 watch out once I get my\n\
 mustache styled."))
+
+DEFINE_DIALOG(DIALOG_187, 1, 5, 30, 200, _("\
+\n\
+-------\n\
+CREDITS\n\
+-------\n\
+\n\
+\n\
+Hack Made By:\n\
+Romcad\n\
+\n\
+\n\
+TOOLS:\n\
+Made With HackerSM64\n\
+\n\
+SM64DSe Ultimate\n\
+\n\
+Blender\n\
+Fast64\n\
+\n\
+VGMTrans\n\
+SEQ64\n\
+\n\
+GIMP\n\
+\n\
+\n\
+\n\
+\n\
+★ Thank You So Much For\n\
+To Playing My Game! ★"))
+
+DEFINE_DIALOG(DIALOG_188, 1, 5, 30, 200, _("\
+Hello! This hack adds 5\n\
+levels from the DS version\n\
+of SM64, 13 more Power\n\
+Stars, and minor gameplay\n\
+differences.\n\
+Inside Castle:\n\
+★ - Behind The Mirror\n\
+\n\
+Castle Courtyard:\n\
+★ - 8 Red Coins\n\
+The Secret Of Battle Fort:\n\
+★ - 5 Silver Stars\n\
+\n\
+Sunshine Isles:\n\
+★ - 5 Silver Stars\n\
+Goomboss Battle:\n\
+★ - Switch Star\n\
+★ - 8 Red Coins\n\
+★ - Goomboss\n\
+\n\
+Big Boo Battle:\n\
+★ - 8 Red Coins\n\
+★ - Behind The Painting\n\
+★ - King Boo\n\
+\n\
+Chief Chilly Challenge:\n\
+★ - Break The Box\n\
+★ - 8 Red Coins\n\
+★ - Chief Chilly"))
