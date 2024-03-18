@@ -487,6 +487,10 @@ void bhv_chief_chilly_loop(void) {
 			if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_185)) {
 				o->oAction = BULLY_ACT_CHASE_MARIO;
 			}
+
+            if (o->oTimer > 45) {
+		        play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_BOSS_INTRO), 0);
+	        }
 			break;
 
 		case 7:

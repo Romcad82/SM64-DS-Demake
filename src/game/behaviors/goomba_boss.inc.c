@@ -422,6 +422,10 @@ static void goomba_boss_act_start(void) {
 		o->oGoombaTargetYaw = (obj_angle_to_object(o, o->parentObj) + o->oCurrDirection) + 0x3FAB;
 		goomba_boss_begin_jump();
 	}
+
+	if (o->oTimer > 35) {
+		play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_BOSS_INTRO), 0);
+	}
 }
 
 static void goomba_boss_act_death(void) {

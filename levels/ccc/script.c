@@ -187,10 +187,10 @@ const LevelScript level_ccc_entry[] = {
 		OBJECT(MODEL_CCC_ICE_C, -2540, 750, 0, 0, -90, 0, 0x00000000, bhvFallingIcePlatformC),
 		OBJECT(MODEL_CCC_ICE_C, -1796, 750, 1796, 0, -45, 0, 0x00000000, bhvFallingIcePlatformC),
 		OBJECT(MODEL_BIG_CHILL_BULLY, 0, 1000, 0, 0, -180, 0, 0x02000000, bhvChiefChilly),
-		OBJECT(MODEL_NONE, 0, 1700, -1050, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 2700, -1050, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(ccc_area_2_collision),
 		MACRO_OBJECTS(ccc_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_BOSS_INTRO),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */

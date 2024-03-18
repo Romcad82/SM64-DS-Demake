@@ -966,19 +966,19 @@ void bhv_king_boo_mirror_loop(void) {
 		if ((mario_is_within_rectangle(-210.0f, 0.0f, -715.0f, 715.0f)) && !(gMarioStates[0].action & (ACT_FLAG_AIR | ACT_FLAG_ATTACKING))) {
 			if (o->oTimer == 31) {
 				set_mario_npc_dialog(MARIO_DIALOG_LOOK_UP);
-				play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_BOSS_INTRO), 0);
+                play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(4, SEQ_EVENT_BOSS_INTRO), 0);
 			}
-			else if (o->oTimer == 46) {
+			else if (o->oTimer == 32) {
 				o->parentObj->oAction = 0;
 				o->parentObj->oBooTargetOpacity = 255;
 				o->parentObj->oPosX = gMarioObject->oPosX - 230.0f;
 				o->parentObj->oPosZ = gMarioObject->oPosZ + 300.0f;
 				o->parentObj->oBooInitialMoveYaw = 0x655A;
 			}
-			else if ((o->oTimer > 46) && (o->oTimer <= 61)) {
+			else if ((o->oTimer > 32) && (o->oTimer <= 47)) {
 				o->parentObj->oAction = 8;
 			}
-			else if (o->oTimer > 61) {
+			else if (o->oTimer > 47) {
 				if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP,
 					DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_183)) {
 					o->oAction = 1;

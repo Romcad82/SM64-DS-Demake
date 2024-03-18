@@ -173,10 +173,10 @@ const LevelScript level_gb_entry[] = {
 		OBJECT(MODEL_NONE, 0, 300, 0, 0, 0, 0, 0x00000000, bhvGoombaBossHandler),
 		OBJECT(MODEL_GOOMBA, 517, 300, 1247, 0, -68, 0, 0x00010000, bhvGoombaBoss),
 		OBJECT(MODEL_NONE, 517, 300, 1247, 0, -68, 0, 0x02030302, bhvSpawnObjectFromAnother),
-		OBJECT(MODEL_NONE, 0, 1000, 1350, 0, 180, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 1000, 1350, 0, 102, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(gb_area_2_collision),
 		MACRO_OBJECTS(gb_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_BOSS_INTRO),
+		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SPOOKY),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
