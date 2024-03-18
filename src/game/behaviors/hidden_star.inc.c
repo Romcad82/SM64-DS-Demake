@@ -111,6 +111,7 @@ void bhv_silvers_hidden_star_loop(void) {
 
 		if (o->oHiddenStarTriggerCounter < 5) {
 			o->oAction = 3;
+			obj_become_intangible(o->parentObj);
 		}
 
 		break;
