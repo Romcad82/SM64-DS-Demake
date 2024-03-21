@@ -1132,7 +1132,7 @@ void bhv_boo_in_castle_loop(void) {
             obj_mark_for_deletion(o);
         }
 #endif
-        if (gMarioCurrentRoom == 1) {
+        if ((gMarioCurrentRoom == 1) || (mario_is_within_rectangle(-1280.0f, -766.0f, 359.0f, 842.0f))) { // Original: if (gMarioCurrentRoom == 1)
             o->oAction++;
         }
     } else if (o->oAction == 1) {
