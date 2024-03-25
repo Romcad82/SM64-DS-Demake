@@ -2329,10 +2329,10 @@ Blender\n\
 Fast64\n\
 \n\
 VGMTrans\n\
+Sekaiju\n\
 SEQ64\n\
 \n\
 GIMP\n\
-\n\
 \n\
 \n\
 \n\
