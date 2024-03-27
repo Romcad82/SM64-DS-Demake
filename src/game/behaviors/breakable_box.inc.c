@@ -22,6 +22,12 @@ void breakable_box_init(void) {
         case BREAKABLE_BOX_BP_LARGE:									cur_obj_scale(1.5f);	break;
 		case BREAKABLE_BOX_BP_LARGE_3_COINS:    o->oNumLootCoins = 3;	cur_obj_scale(1.5f);	break;
     }
+
+    // Simplest way to get Box to despawn when exiting VCUTM
+    if ((gCurrLevelNum == LEVEL_CASTLE_GROUNDS) && ((sWarpDest.nodeId == 0x06) || (sWarpDest.nodeId == 0x08))) {
+        obj_mark_for_deletion(o);
+    }
+    //
 }
 
 void hidden_breakable_box_actions(void) {
