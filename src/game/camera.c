@@ -6283,7 +6283,7 @@ struct CameraTrigger sCamBbb[] = {
 	NULL_TRIGGER
 };
 struct CameraTrigger sCamCcc[] = {
-	{1, cam_ccc_fixed, -8108, -3600, 4086, 100, 500, 410, 0xe13a},
+	{1, cam_ccc_fixed, -8181, -3600, 4154, 200, 500, 410, 0xe13a},
 	{1, cam_ccc_free_roam, -7963, -3600, 3949, 100, 500, 410, 0xe13a},
 	NULL_TRIGGER
 };
