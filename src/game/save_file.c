@@ -572,6 +572,11 @@ void save_file_set_flags(u32 flags) {
     gSaveFileModified = TRUE;
 }
 
+void set_save_file_set_flags(s32 fileIndex, u32 flags) {
+    gSaveBuffer.files[fileIndex][0].flags |= (flags | SAVE_FLAG_FILE_EXISTS);
+    gSaveFileModified = TRUE;
+}
+
 void save_file_clear_flags(u32 flags) {
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags &= ~flags;
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= SAVE_FLAG_FILE_EXISTS;

@@ -108,6 +108,10 @@ s8 sSelectedFileNum = 0;
 // coin high score, 1 for high score across all files.
 s8 sScoreFileCoinScoreMode = 0;
 
+//
+s8 seeCheatText = TRUE;
+//
+
 // In EU, if no save file exists, open the language menu so the user can find it.
 
 unsigned char textReturn[] = { TEXT_RETURN };
@@ -134,6 +138,10 @@ unsigned char textMarioA[] = { TEXT_FILE_MARIO_A };
 unsigned char textMarioB[] = { TEXT_FILE_MARIO_B };
 unsigned char textMarioC[] = { TEXT_FILE_MARIO_C };
 unsigned char textMarioD[] = { TEXT_FILE_MARIO_D };
+
+//
+unsigned char text120StarsCheat[] = { TEXT_FILE_120_STARS_CHEAT };
+//
 
 unsigned char textNew[] = { TEXT_NEW };
 unsigned char starIcon[] = { GLYPH_STAR, GLYPH_SPACE };
@@ -1196,6 +1204,24 @@ void handle_cursor_button_input(void) {
             sClickPos[1] = sCursorPos[1];
             sCursorClickingTimer = 1;
         }
+
+        //
+        if (gPlayer1Controller->buttonPressed & L_TRIG) {
+            save_file_set_star_flags(0, COURSE_NUM_TO_INDEX(0), 0x1F);
+            for (u8 i = 1; i < 16; i++) {
+                save_file_set_star_flags(0, COURSE_NUM_TO_INDEX(i), 0x7F);
+            }
+            for (u8 i = 21; i < 24; i++) {
+                save_file_set_star_flags(0, COURSE_NUM_TO_INDEX(i), 0x01);
+            }
+            save_file_set_star_flags(0, COURSE_NUM_TO_INDEX(24), 0x03);
+            for (u8 i = 25; i < 30; i++) {
+                save_file_set_star_flags(0, COURSE_NUM_TO_INDEX(i), 0x01);
+            }
+
+            set_save_file_set_flags(0, 0x1F30FFFE);
+        }
+        //
     }
 }
 
@@ -1373,6 +1399,15 @@ void print_main_menu_strings(void) {
     print_menu_generic_string(150, 105, textMarioB);
     print_menu_generic_string(MARIOTEXT_X2, 65, textMarioC);
     print_menu_generic_string(MARIOTEXT_X2, -105, textMarioD);
+
+    //
+    seeCheatText = (save_file_get_total_star_count(0, COURSE_NUM_TO_INDEX(COURSE_MIN), COURSE_NUM_TO_INDEX(COURSE_MAX)) < 120);
+
+    if (seeCheatText) {
+        print_menu_generic_string(56, 17, text120StarsCheat);
+    }
+    //
+
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
 

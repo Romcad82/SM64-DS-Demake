@@ -177,6 +177,7 @@ u32 save_file_get_max_coin_score(s32 courseIndex);
 s32 save_file_get_course_star_count(s32 fileIndex, s32 courseIndex);
 s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse);
 void save_file_set_flags(u32 flags);
+void set_save_file_set_flags(s32 fileIndex, u32 flags);
 void save_file_clear_flags(u32 flags);
 u32 save_file_get_flags(void);
 u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex);

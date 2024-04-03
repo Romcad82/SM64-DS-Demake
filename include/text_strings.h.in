@@ -202,6 +202,10 @@
 #define TEXT_FILE_MARIO_C _("MARIO C")
 #define TEXT_FILE_MARIO_D _("MARIO D")
 
+//
+#define TEXT_FILE_120_STARS_CHEAT _("PRESS L TO UNLOCK 120 STARS FOR FILE A")
+//
+
 // Menu Options
 #define TEXT_SCORE _("SCORE")
 #define TEXT_COPY _("COPY")
