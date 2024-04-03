@@ -107,7 +107,7 @@ static s32 boo_should_be_active(void) {
 void bhv_courtyard_boo_triplet_init(void) {
     s32 i;
 //#ifndef UNLOCK_ALL
-    if ((gHudDisplay.stars < SPAWN_RED_COIN_BOO_STAR_REQUIREMENT) || !(save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & STAR_FLAG_ACT_100_COINS)) { // Original: if (gHudDisplay.stars < SPAWN_CASTLE_BOO_STAR_REQUIREMENT)
+    if ((gHudDisplay.stars < SPAWN_RED_COIN_BOO_STAR_REQUIREMENT) || !(save_file_get_flags() & SAVE_FLAG_COLLECTED_COURTYARD_STAR)) { // Original: if (gHudDisplay.stars < SPAWN_CASTLE_BOO_STAR_REQUIREMENT)
         obj_mark_for_deletion(o);
     } else
 //#endif
@@ -126,7 +126,7 @@ void bhv_courtyard_boo_triplet_init(void) {
 
 void bhv_red_coin_boo_init(void) {
 //#ifndef UNLOCK_ALL
-	if ((gHudDisplay.stars < SPAWN_RED_COIN_BOO_STAR_REQUIREMENT) || (save_file_get_star_flags(gCurrSaveFileNum - 1, COURSE_NUM_TO_INDEX(gCurrCourseNum)) & STAR_FLAG_ACT_100_COINS)) {
+	if ((gHudDisplay.stars < SPAWN_RED_COIN_BOO_STAR_REQUIREMENT) || (save_file_get_flags() & SAVE_FLAG_COLLECTED_COURTYARD_STAR)) {
 		obj_mark_for_deletion(o);
 	}
 	else

@@ -27,6 +27,12 @@ void bhv_collect_star_init(void) {
     }
 
     obj_set_hitbox(o, &sCollectStarHitbox);
+
+    //
+    if ((gCurrLevelNum == LEVEL_CASTLE) && (GET_BPARAM1(o->oBehParams) == 0x05) && (save_file_get_flags() & SAVE_FLAG_COLLECTED_MIRROR_STAR)) {
+        obj_mark_for_deletion(o);
+    }
+    //
 }
 
 void bhv_collect_star_loop(void) {
