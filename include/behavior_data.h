@@ -436,6 +436,7 @@ extern const BehaviorScript bhvSquishMarioObj[];
 extern const BehaviorScript bhvTtmRollingLog[];
 extern const BehaviorScript bhvLllVolcanoFallingTrap[];
 extern const BehaviorScript bhvLllRollingLog[];
+extern const BehaviorScript bhvSuperMushroom[];
 extern const BehaviorScript bhv1upWalking[];
 extern const BehaviorScript bhv1upRunningAway[];
 extern const BehaviorScript bhv1upSliding[];

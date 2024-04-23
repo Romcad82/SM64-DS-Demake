@@ -773,6 +773,15 @@ u32 set_mario_action_airborne(struct MarioState *m, u32 action, u32 actionArg) {
         && (action == ACT_DOUBLE_JUMP || action == ACT_TWIRLING)) {
         action = ACT_JUMP;
     }
+    //
+    else if (m->flags & MARIO_SUPER) {
+        if ((action == ACT_DOUBLE_JUMP) || (action == ACT_TWIRLING) || (action == ACT_BACKFLIP) || (action == ACT_SIDE_FLIP) || (action == ACT_LONG_JUMP)) {
+            action = ACT_JUMP;
+        } else if ((action == ACT_DIVE) || (action == ACT_SLIDE_KICK)) {
+            action = ACT_JUMP_KICK;
+        }
+    }
+    //
 
     switch (action) {
         case ACT_DOUBLE_JUMP:
@@ -1452,7 +1461,7 @@ void update_mario_health(struct MarioState *m) {
         // When already healing or hurting Mario, Mario's HP is not changed any more here.
         if (((u32) m->healCounter | (u32) m->hurtCounter) == 0) {
             if ((m->input & INPUT_IN_POISON_GAS) && !(m->action & ACT_FLAG_INTANGIBLE)) {
-                if (!(m->flags & MARIO_METAL_CAP) && !gDebugLevelSelect) {
+                if (!(m->flags & (MARIO_METAL_CAP | MARIO_SUPER)) && !gDebugLevelSelect) { // Original: if (!(m->flags & MARIO_METAL_CAP) && !gDebugLevelSelect)
                     m->health -= 4;
                 }
             } else {
@@ -1612,10 +1621,35 @@ u32 update_and_return_cap_flags(struct MarioState *m) {
             m->capTimer -= 1;
         }
 
+        //
+        if ((flags & MARIO_SUPER) && (m->capTimer >= 570) && (m->isMarioScalable)) {
+            f32 scale = m->capTimer * -0.05f + 31.0f;
+
+            cur_obj_scale(scale);
+
+            m->marioObj->hitboxRadius = 37.0f * scale;
+        } else if ((flags & MARIO_SUPER) && (m->capTimer <= 30)) {
+            f32 scale = m->capTimer * 0.05f + 1.0f;
+
+            cur_obj_scale(scale);
+
+            m->marioObj->hitboxRadius = 37.0f * scale;
+
+            m->isMarioScalable = TRUE;
+        } else if (flags & MARIO_SUPER) {
+            cur_obj_scale(2.5f);
+            m->isMarioScalable = FALSE;
+        }
+        //
+
         if (m->capTimer == 0) {
             stop_cap_music();
 
             m->flags &= ~MARIO_SPECIAL_CAPS;
+            //
+            m->flags &= ~MARIO_SUPER;
+            m->superMarioKillCount = 0;
+            //
             if (!(m->flags & MARIO_CAPS)) {
                 m->flags &= ~MARIO_CAP_ON_HEAD;
             }
@@ -1653,6 +1687,13 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
         bodyState->modelState |= MODEL_STATE_METAL;
     }
 
+    //
+    if (flags & MARIO_SUPER) {
+        m->forwardVel *= 0.985f;
+        m->vel[1] *= 1.0225f;
+    }
+    //
+
     //! (Pause buffered hitstun) Since the global timer increments while paused,
     //  this can be paused through to give continual invisibility. This leads to
     //  no interaction with objects.
@@ -1678,9 +1719,9 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
 
     // Short hitbox for crouching/crawling/etc.
     if (m->action & ACT_FLAG_SHORT_HITBOX) {
-        m->marioObj->hitboxHeight = 100.0f;
+        m->marioObj->hitboxHeight = 100.0f * ((flags & MARIO_SUPER) ? m->marioObj->header.gfx.scale[1] : 1.0f); // Original: m->marioObj->hitboxHeight = 100.0f;
     } else {
-        m->marioObj->hitboxHeight = 160.0f;
+        m->marioObj->hitboxHeight = 160.0f * ((flags & MARIO_SUPER) ? m->marioObj->header.gfx.scale[1] : 1.0f); // Original: m->marioObj->hitboxHeight = 160.0f;
     }
 
     if ((m->flags & MARIO_TELEPORTING) && (m->fadeWarpOpacity != MODEL_STATE_MASK)) {
@@ -1851,6 +1892,11 @@ void init_mario(void) {
     gMarioState->heldObj = NULL;
     gMarioState->riddenObj = NULL;
     gMarioState->usedObj = NULL;
+
+    //
+    gMarioState->superMarioKillCount = 0;
+    gMarioState->isMarioScalable = TRUE;
+    //
 
     gMarioState->waterLevel = find_water_level(gMarioSpawnInfo->startPos[0], gMarioSpawnInfo->startPos[2]);
 

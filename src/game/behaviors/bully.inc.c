@@ -335,6 +335,8 @@ void chief_chilly_act_lava_hit(void) {
 		cur_obj_become_intangible();
 		if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP, DIALOG_FLAG_TURN_TO_MARIO, CUTSCENE_DIALOG, DIALOG_186)) {
 			o->oAction = 7;
+            stop_background_music(SEQ_EVENT_BOSS);
+            stop_background_music(SEQ_EVENT_BOSS_INTRO);
 		}
 	} else {
 		cur_obj_become_intangible();

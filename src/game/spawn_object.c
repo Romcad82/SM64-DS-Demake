@@ -197,6 +197,10 @@ struct Object *allocate_object(struct ObjectNode *objList) {
     obj->oLightID = 0xFFFF;
 #endif
 
+    //
+    obj->superKilled = FALSE;
+    //
+
     return obj;
 }
 

@@ -91,7 +91,7 @@ static u8 sGoombaBossAttackHandlers[][6] = {
     },
     // huge
     {
-        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_SPECIAL_BOSS_GOOMBA_WEAKLY_ATTACKED,
+        /* ATTACK_PUNCH:                 */ ATTACK_HANDLER_SPECIAL_BOSS_GOOMBA_ATTACKED,
         /* ATTACK_KICK_OR_TRIP:          */ ATTACK_HANDLER_SPECIAL_BOSS_GOOMBA_SPAWN_MUSHROOM,
         /* ATTACK_FROM_ABOVE:            */ ATTACK_HANDLER_SQUISHED,
         /* ATTACK_GROUND_POUND_OR_TWIRL: */ ATTACK_HANDLER_SQUISHED,
@@ -111,6 +111,14 @@ static void set_goomba_properties(void) {
 
 	o->parentObj = cur_obj_nearest_object_with_behavior(bhvGoombaBossHandler);
 
+	if (lateral_dist_between_objects(o->parentObj, o) < 1020.0f) {
+		o->oPosX *= 1.03f;
+		o->oPosZ *= 1.03f;
+	} else if (lateral_dist_between_objects(o->parentObj, o) > 1750.0f) {
+		o->oPosX *= 0.97f;
+		o->oPosZ *= 0.97f;
+	}
+
 	o->oHomeX = lateral_dist_between_objects(o, o->parentObj);
 }
 
@@ -126,6 +134,7 @@ void bhv_goomba_boss_init(void) {
 
 	o->oHitNumber = 0;
 	o->oCurrDirection = 0x0;
+	o->oBossAttacked = FALSE;
 	o->oAction = 5;
 }
 
@@ -135,7 +144,13 @@ void bhv_goomba_minion_init(void) {
 	obj_set_hitbox(o, &sGoombaMinionHitbox);
 
 	o->oGravity = -8.0f / 3.0f * o->oGoombaScale;
-	spawn_mist_particles();
+
+	o->oCurrDirection = cur_obj_nearest_object_with_behavior(bhvGoombaBoss)->oCurrDirection;
+	o->oHitNumber = cur_obj_nearest_object_with_behavior(bhvGoombaBoss)->oHitNumber;
+
+	if (GET_BPARAM3(o->oBehParams) == 0x00) {
+		spawn_mist_particles();
+	}
 }
 
 static void goomba_boss_turning(void) {
@@ -179,7 +194,9 @@ static void goomba_boss_turning(void) {
  * Enter the jump action and set initial y velocity.
  */
 static void goomba_boss_begin_jump(void) {
-	if (!(mario_inbetween_cur_obj_angles(o->oGoombaTargetYaw - 0x4000, o->oGoombaTargetYaw + 0x4000))) {
+	s32 minAngle = o->oGoombaTargetYaw - 0x4000;
+	s32 maxAngle = (o->oCurrDirection == 0x0) ? (o->oGoombaTargetYaw + 0x4000) : (o->oGoombaTargetYaw - 0xC000);
+	if (!(mario_inbetween_cur_obj_angles(minAngle, maxAngle))) {
 		o->oCurrDirection += (o->oCurrDirection == 0x0) ? 0x8000 : -0x8000;
 		o->oGoombaTargetYaw += 0x8000;
 	}
@@ -284,6 +301,8 @@ static void goomba_boss_act_walk(void) {
 	if ((!(mario_inbetween_cur_obj_angles(minAngle, maxAngle)) && (o->oDistanceToMario <= 1000.0f)) && (cur_obj_has_behavior(bhvGoombaBoss)) && (o->oTimer > 30) && (gMarioState->hurtCounter == 0)) {
 		o->oAction = GOOMBA_ACT_WAIT;
 		set_action_for_all_objects_with_behavior_not_dead(bhvGoombaMinion, GOOMBA_ACT_WAIT);
+	} else if ((cur_obj_has_behavior(bhvGoombaBoss)) && !(cur_obj_nearest_object_with_behavior(bhvGoombaMinion))) {
+		o->oAction = GOOMBA_ACT_WAIT;
 	}
 
 	goomba_boss_turning();
@@ -348,7 +367,7 @@ static void goomba_boss_act_wait(void) {
 		regGoomba->parentObj = regGoomba;
 		obj_mark_for_deletion(o);
 	}
-	if ((!cur_obj_nearest_object_with_behavior(bhvGoomba)) && (o->oForwardVel == 0.0f)) {
+	if (!((cur_obj_nearest_object_with_behavior(bhvGoomba)) || (cur_obj_nearest_object_with_behavior(bhvGoombaMinion))) && (o->oForwardVel == 0.0f)) {
 		goomba_boss_begin_jump();
 	} else {
 		goomba_boss_turning();
@@ -358,6 +377,11 @@ static void goomba_boss_act_wait(void) {
 			o->oForwardVel -= 0.25f;
 		}
 	}
+
+	if (((o->oDistanceToMario > 1250.0f)) && (cur_obj_has_behavior(bhvGoombaBoss)) && ((cur_obj_nearest_object_with_behavior(bhvGoombaMinion)) || (cur_obj_nearest_object_with_behavior(bhvGoomba)))) {
+		o->oAction = GOOMBA_ACT_WALK;
+		set_action_for_all_objects_with_behavior_not_dead(bhvGoombaMinion, GOOMBA_ACT_WALK);
+	}
 }
 
 static void spawn_minion_group(void) {
@@ -366,9 +390,7 @@ static void spawn_minion_group(void) {
 	s8 direction = (o->oCurrDirection == 0x0) ? 1 : -1;
 
 	while (goombaCount < goombaMax) {
-		struct Object* goombaMinion = spawn_object_relative(0x00, (direction * sGoombaMinionSet[o->oHitNumber][goombaCount][0]), 0, sGoombaMinionSet[o->oHitNumber][goombaCount][1], o, MODEL_GOOMBA, bhvGoombaMinion);
-		goombaMinion->oHitNumber = o->oHitNumber;
-		goombaMinion->oCurrDirection = o->oCurrDirection;
+		spawn_object_relative(0x00, (direction * sGoombaMinionSet[o->oHitNumber][goombaCount][0]), 0, sGoombaMinionSet[o->oHitNumber][goombaCount][1], o, MODEL_GOOMBA, bhvGoombaMinion);
 		goombaCount++;
 	}
 }
@@ -379,6 +401,7 @@ static void goomba_boss_act_spawn_minions(void) {
 	}
 	if (o->oTimer == 15) {
 		cur_obj_become_tangible();
+		o->oBossAttacked = FALSE;
 		o->oAction = GOOMBA_ACT_WALK;
 	}
 }
@@ -392,7 +415,11 @@ static void goomba_boss_act_attacked_mario(void) {
 		//  hard to chain these in practice
 	//goomba_boss_begin_jump();
 	//o->oGoombaTurningAwayFromWall = FALSE;
-	goomba_boss_turning();
+	if ((gMarioState->flags & MARIO_SUPER) && (o->oGoombaPrevAction == GOOMBA_ACT_WALK)) {
+		goomba_boss_act_walk();
+	} else {
+		goomba_boss_turning();
+	}
 	o->oAction = o->oGoombaPrevAction;
 }
 
@@ -434,6 +461,8 @@ static void goomba_boss_act_death(void) {
 		spawn_mist_particles();
 		spawn_triangle_break_particles(30, MODEL_DIRT_ANIMATION, 3.0f, TINY_DIRT_PARTICLE_ANIM_STATE_YELLOW);
 		cur_obj_play_sound_2(SOUND_GENERAL_BREAK_BOX);
+		stop_background_music(SEQ_EVENT_BOSS);
+		stop_background_music(SEQ_EVENT_BOSS_INTRO);
 		obj_mark_for_deletion(o);
 	}
 }
@@ -449,21 +478,40 @@ void boss_goomba_weakly_attacked(void) {
     o->oAction = GOOMBA_ACT_ATTACKED_MARIO;
 }
 
-void boss_goomba_spawn_mushroom(void) {
-	if (o->oNumLootCoins == 1) {
-		struct Object *superMushroom = spawn_object(o, MODEL_SUPER, bhv1upWalking);
-		SET_BPARAM3(superMushroom->oBehParams, 0x01);
-		vec3f_copy(&superMushroom->oPosVec, &gMarioObject->oPosVec);
-		o->oNumLootCoins = 0;
+void boss_goomba_attacked(void) {
+	if ((gMarioState->flags & MARIO_SUPER) && !(o->oBossAttacked)) {
+		obj_set_squished_action();
+		mark_goomba_boss_as_dead();
+		o->oBossAttacked = TRUE;
+	} else {
+		o->oGoombaPrevAction = o->oAction;
+    	o->oAction = GOOMBA_ACT_ATTACKED_MARIO;
 	}
-	o->oGoombaPrevAction = o->oAction;
-	o->oAction = GOOMBA_ACT_ATTACKED_MARIO;
 }
 
-static void goomba_hit_boss(struct Object *goomba) {
+void boss_goomba_spawn_mushroom(void) {
+	if (o->oNumLootCoins == 1) {
+		struct Object *superMushroom = spawn_object(o, MODEL_SUPER, bhvSuperMushroom);
+		vec3f_copy(&superMushroom->oPosVec, &gMarioObject->oPosVec);
+		superMushroom->oTimer = -1;
+		o->oNumLootCoins = 0;
+	}
+
+	if ((gMarioState->flags & MARIO_SUPER) && !(o->oBossAttacked)) {
+		obj_set_squished_action();
+		mark_goomba_boss_as_dead();
+		o->oBossAttacked = TRUE;
+	} else {
+		o->oGoombaPrevAction = o->oAction;
+    	o->oAction = GOOMBA_ACT_ATTACKED_MARIO;
+	}
+}
+
+static void goomba_check_hit_boss(struct Object *goomba) {
 	if ((lateral_dist_between_objects(o, goomba) < (45.0f * o->oGoombaScale)) &&
 		((goomba->oAction == OBJ_ACT_HORIZONTAL_KNOCKBACK) || (goomba->oAction == OBJ_ACT_VERTICAL_KNOCKBACK)) &&
-		((o->oAction == GOOMBA_ACT_WALK) || (o->oAction == GOOMBA_ACT_WAIT))) {
+		((o->oAction == GOOMBA_ACT_WALK) || (o->oAction == GOOMBA_ACT_WAIT)) &&
+		!(gMarioState->flags & MARIO_SUPER)) {
 		obj_set_squished_action();
 		mark_goomba_boss_as_dead();
 	}
@@ -540,10 +588,10 @@ void bhv_goomba_boss_update(void) {
 		}
 		
 		if ((cur_obj_has_behavior(bhvGoombaBoss)) && (cur_obj_nearest_object_with_behavior(bhvGoombaMinion))) {
-			goomba_hit_boss(cur_obj_nearest_object_with_behavior(bhvGoombaMinion));
+			goomba_check_hit_boss(cur_obj_nearest_object_with_behavior(bhvGoombaMinion));
 		}
 		if ((cur_obj_has_behavior(bhvGoombaBoss)) && (cur_obj_nearest_object_with_behavior(bhvGoomba))) {
-			goomba_hit_boss(cur_obj_nearest_object_with_behavior(bhvGoomba));
+			goomba_check_hit_boss(cur_obj_nearest_object_with_behavior(bhvGoomba));
 		}
 
         cur_obj_move_standard(-78);

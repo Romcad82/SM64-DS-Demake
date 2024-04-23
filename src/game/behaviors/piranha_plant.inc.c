@@ -130,6 +130,9 @@ void piranha_plant_act_woken_up(void) {
 void piranha_plant_reset_when_far(void) {
     if (o->activeFlags & ACTIVE_FLAG_FAR_AWAY) {
         o->oAction = PIRANHA_PLANT_ACT_IDLE;
+        //
+        o->superKilled = FALSE;
+        //
     }
 }
 
@@ -183,6 +186,9 @@ void piranha_plant_act_shrink_and_die(void) {
 void piranha_plant_act_wait_to_respawn(void) {
     if (o->oDistanceToMario > 1200.0f) {
         o->oAction = PIRANHA_PLANT_ACT_RESPAWN;
+        //
+        o->superKilled = FALSE;
+        //
     }
 }
 
@@ -250,8 +256,11 @@ void piranha_plant_act_biting(void) {
 
     // If the player is wearing the Metal Cap and interacts with the Piranha
     // Plant, the Piranha Plant will die.
-    if ((o->oInteractStatus & INT_STATUS_INTERACTED) && (gMarioState->flags & MARIO_METAL_CAP)) {
+    if ((o->oInteractStatus & INT_STATUS_INTERACTED) && (gMarioState->flags & (MARIO_METAL_CAP | MARIO_SUPER))) { // Original: if ((o->oInteractStatus & INT_STATUS_INTERACTED) && (gMarioState->flags & MARIO_METAL_CAP))
         o->oAction = PIRANHA_PLANT_ACT_ATTACKED;
+        //
+        update_super_mario_kill_count(o);
+        //
     }
 }
 

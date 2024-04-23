@@ -341,6 +341,9 @@ struct Object {
 #ifdef PUPPYLIGHTS
     struct PuppyLight puppylight;
 #endif
+    //
+    s8 superKilled;
+    //
 };
 
 struct ObjectHitbox {
@@ -484,6 +487,11 @@ struct MarioState {
              s16 ceilYaw;
              s16 wallYaw;
     // -- HackerSM64 MarioState fields end --
+
+    //
+    u8 superMarioKillCount;
+    s8 isMarioScalable;
+    //
 };
 
 #endif // TYPES_H

@@ -315,6 +315,7 @@ u8 sBackgroundMusicDefaultVolume[] = {
 	120, // SEQ_EVENT_CUTSCENE_COLLECT_SS4
 	120, // SEQ_EVENT_CUTSCENE_COLLECT_SS5
     75,  // SEQ_EVENT_WAKEUP
+    70,  // SEQ_EVENT_SUPER_MARIO
 };
 
 STATIC_ASSERT(ARRAY_COUNT(sBackgroundMusicDefaultVolume) == SEQ_COUNT,

@@ -62,6 +62,7 @@ Vec3f sObjSavedPos;
 void wiggler_jumped_on_attack_handler(void);
 void huge_goomba_weakly_attacked(void);
 void boss_goomba_weakly_attacked(void);
+void boss_goomba_attacked(void);
 void boss_goomba_spawn_mushroom(void);
 
 static s32 obj_is_rendering_enabled(void) {
@@ -607,6 +608,10 @@ static s32 obj_handle_attacks(struct ObjectHitbox *hitbox, s32 attackedMarioActi
 					boss_goomba_weakly_attacked();
 					break;
 
+                case ATTACK_HANDLER_SPECIAL_BOSS_GOOMBA_ATTACKED:
+					boss_goomba_attacked();
+					break;
+                
 				case ATTACK_HANDLER_SPECIAL_BOSS_GOOMBA_SPAWN_MUSHROOM:
 					boss_goomba_spawn_mushroom();
 					break;

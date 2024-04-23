@@ -281,10 +281,12 @@ void enable_time_stop_including_mario(void);
 void disable_time_stop_including_mario(void);
 s32 cur_obj_check_interacted(void);
 void cur_obj_spawn_loot_blue_coin(void);
-
+//
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY);
 s32 mario_inbetween_cur_obj_angles(s32 minAngle, s32 maxAngle);
 s32 cur_obj_inbetween_obj_angles(struct Object *obj, s32 minAngle, s32 maxAngle);
 s32 obj_inbetween_cur_obj_angles(struct Object* obj, s32 minAngle, s32 maxAngle);
+void update_super_mario_kill_count(struct Object *obj);
+//
 
 #endif // OBJECT_HELPERS_H

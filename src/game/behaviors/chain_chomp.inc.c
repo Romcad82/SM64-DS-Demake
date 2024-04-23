@@ -435,9 +435,22 @@ void bhv_chain_chomp_update(void) {
 void bhv_wooden_post_update(void) {
     // When ground pounded by mario, drop by -45 + -20
     if (!o->oWoodenPostMarioPounding) {
-        if ((o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform())) {
+        if ((o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform()) || (((o->oDistanceToMario < (175.0f - (o->oWoodenPostOffsetY / 2.0f))) || (cur_obj_is_mario_on_platform())) && (gMarioState->flags & MARIO_SUPER) && (o->oWoodenPostOffsetY > -190.0f))) { // Original: if ((o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform()))
             cur_obj_play_sound_2(SOUND_GENERAL_POUND_WOOD_POST);
             o->oWoodenPostSpeedY = -70.0f;
+
+            //
+            if (gMarioState->flags & MARIO_SUPER) {
+                o->oWoodenPostMarioPounding = TRUE;
+
+                o->oWoodenPostSpeedY = -210.0f;
+
+                obj_spawn_loot_yellow_coins(o, 5, 20.0f);
+                set_object_respawn_info_bits(o, RESPAWN_INFO_TYPE_NORMAL);
+
+                update_super_mario_kill_count(o);
+            }
+            //
         }
     } else if (approach_f32_ptr(&o->oWoodenPostSpeedY, 0.0f, 25.0f)) {
         // Stay still until mario is done ground pounding

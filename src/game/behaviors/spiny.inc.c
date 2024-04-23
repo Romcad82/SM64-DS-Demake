@@ -14,7 +14,7 @@ static struct ObjectHitbox sSpinyHitbox = {
     /* downOffset:        */ 0,
     /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
-    /* numLootCoins:      */ 0,
+    /* numLootCoins:      */ 1, // Original: 0,
     /* radius:            */ 80,
     /* height:            */ 50,
     /* hurtboxRadius:     */ 40,
@@ -187,4 +187,11 @@ void bhv_spiny_update(void) {
             obj_move_for_one_second(SPINY_ACT_WALK);
             break;
     }
+
+    //
+    if ((obj_check_if_collided_with_object(gMarioObject, o)) && (gMarioState->flags & MARIO_SUPER)) {
+        obj_die_if_health_non_positive();
+        update_super_mario_kill_count(o);
+    }
+    //
 }

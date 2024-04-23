@@ -27,6 +27,9 @@
 #include "spawn_object.h"
 #include "spawn_sound.h"
 #include "puppylights.h"
+//
+#include "src/audio/external.h"
+//
 
 static s32 clear_move_flag(u32 *bitSet, s32 flag);
 
@@ -2426,6 +2429,7 @@ void cur_obj_spawn_loot_blue_coin(void) {
     }
 }
 
+//
 void cur_obj_spawn_star_at_y_offset(f32 targetX, f32 targetY, f32 targetZ, f32 offsetY) {
     f32 objectPosY = o->oPosY;
     o->oPosY += offsetY + gDebugInfo[DEBUG_PAGE_ENEMYINFO][0];
@@ -2501,3 +2505,27 @@ s32 obj_inbetween_cur_obj_angles(struct Object *obj, s32 minAngle, s32 maxAngle)
 		return FALSE;
 	}
 }
+
+void update_super_mario_kill_count(struct Object *obj) {
+    if (obj->superKilled) {
+        return;
+    }
+    obj->superKilled = TRUE;
+
+    gMarioState->superMarioKillCount++;
+
+    struct Object *orangeNumber;
+    if (gMarioState->superMarioKillCount < 8) {
+        orangeNumber = spawn_object_relative(gMarioState->superMarioKillCount, gMarioObject->oPosX, (gMarioObject->oPosY + 393.75f), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
+    } else {
+        orangeNumber = spawn_object_relative(ORANGE_NUMBER_9 + 7, gMarioObject->oPosX, (gMarioObject->oPosY + 393.75f), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
+        play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
+		gMarioState->numLives++;
+    }
+	orangeNumber->oPosY = (gMarioObject->oPosY + 393.75f);
+	orangeNumber->oPosY += 25.0f;
+	orangeNumber->oOrangeNumberOffset = 0;
+	orangeNumber->oHomeX = gMarioObject->oPosX;
+	orangeNumber->oHomeZ = gMarioObject->oPosZ;
+}
+//

@@ -77,11 +77,14 @@ extern Gfx dl_billboard_num_D[];
 extern Gfx dl_billboard_num_E[];
 extern Gfx dl_billboard_num_F[];
 #endif
+//
 extern Gfx dl_billboard_num_0_s[];
 extern Gfx dl_billboard_num_1_s[];
 extern Gfx dl_billboard_num_2_s[];
 extern Gfx dl_billboard_num_3_s[];
 extern Gfx dl_billboard_num_4_s[];
 extern Gfx dl_billboard_num_5_s[];
+extern Gfx dl_billboard_1up[];
+//
 
 #endif // SEGMENT2_H

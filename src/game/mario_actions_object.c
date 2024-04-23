@@ -34,6 +34,12 @@ s32 mario_update_punch_sequence(struct MarioState *m) {
         endAction = ACT_IDLE, crouchEndAction = ACT_CROUCHING;
     }
 
+    //
+    if ((m->flags & MARIO_SUPER) && (m->actionArg == ACT_ARG_PUNCH_SEQUENCE_BREAKDANCE)) {
+        m->actionArg = ACT_ARG_PUNCH_SEQUENCE_GROUND_KICK;
+    }
+    //
+
     switch (m->actionArg) {
         case ACT_ARG_PUNCH_SEQUENCE_YAH:
             play_sound(SOUND_MARIO_PUNCH_YAH, m->marioObj->header.gfx.cameraToObject);

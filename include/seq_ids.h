@@ -54,6 +54,7 @@ enum SeqId {
 	SEQ_EVENT_CUTSCENE_COLLECT_SS4,	  // 0x29
 	SEQ_EVENT_CUTSCENE_COLLECT_SS5,	  // 0x2A
     SEQ_EVENT_WAKEUP,                 // 0x2B
+    SEQ_EVENT_SUPER_MARIO,            // 0x2C
     SEQ_COUNT
 };
 

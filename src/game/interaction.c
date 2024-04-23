@@ -685,7 +685,7 @@ u32 take_damage_from_interact_object(struct MarioState *m) {
         damage += (damage + 1) / 2;
     }
 
-    if (m->flags & MARIO_METAL_CAP) {
+    if (m->flags & (MARIO_METAL_CAP | MARIO_SUPER)) { // Original: if (m->flags & MARIO_METAL_CAP)
         damage = 0;
     }
 
@@ -706,6 +706,12 @@ u32 take_damage_and_knock_back(struct MarioState *m, struct Object *obj) {
         && !(obj->oInteractionSubtype & INT_SUBTYPE_DELAY_INVINCIBILITY)) {
         obj->oInteractStatus = INT_STATUS_INTERACTED | INT_STATUS_ATTACKED_MARIO;
         m->interactObj = obj;
+
+        //
+        if (m->flags & MARIO_SUPER) {
+            return FALSE;
+        }
+        //
 
         damage = take_damage_from_interact_object(m);
 
@@ -1331,7 +1337,7 @@ u32 interact_clam_or_bubba(struct MarioState *m, UNUSED u32 interactType, struct
 
 u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     u32 interaction;
-    if (m->flags & MARIO_METAL_CAP) {
+    if (m->flags & (MARIO_METAL_CAP | MARIO_SUPER)) { // Original: if (m->flags & MARIO_METAL_CAP)
         interaction = INT_FAST_ATTACK_OR_SHELL;
     } else {
         interaction = determine_interaction(m, obj);
@@ -1346,8 +1352,7 @@ u32 interact_bully(struct MarioState *m, UNUSED u32 interactType, struct Object 
 		//
 		if ((obj_has_behavior(obj, bhvChiefChilly)) && (obj->oCanDropCoins == TRUE)) {
 			if ((random_u16() % (100 * obj->oCoinChanceMult)) == 0) {
-				struct Object *superMushroom = spawn_object(obj, MODEL_SUPER, bhv1upWalking);
-				SET_BPARAM3(superMushroom->oBehParams, 0x01);
+				struct Object *superMushroom = spawn_object(obj, MODEL_SUPER, bhvSuperMushroom);
                 superMushroom->oTimer = -1;
 				obj->oCanDropCoins = FALSE;
 			} else if ((random_u16() % (25 * obj->oCoinChanceMult)) == 0) {
@@ -1449,6 +1454,11 @@ u32 interact_hit_from_below(struct MarioState *m, UNUSED u32 interactType, struc
     u32 interaction;
     if (m->flags & MARIO_METAL_CAP) {
         interaction = INT_FAST_ATTACK_OR_SHELL;
+    //
+    } else if (m->flags & MARIO_SUPER) {
+        interaction = INT_FAST_ATTACK_OR_SHELL;
+        update_super_mario_kill_count(obj);
+    //
     } else {
         interaction = determine_interaction(m, obj);
     }
@@ -1489,6 +1499,11 @@ u32 interact_bounce_top(struct MarioState *m, UNUSED u32 interactType, struct Ob
     u32 interaction;
     if (m->flags & MARIO_METAL_CAP) {
         interaction = INT_FAST_ATTACK_OR_SHELL;
+    //
+    } else if (m->flags & MARIO_SUPER) {
+        interaction = INT_FAST_ATTACK_OR_SHELL;
+        update_super_mario_kill_count(obj);
+    //
     } else {
         interaction = determine_interaction(m, obj);
     }
@@ -1635,7 +1650,7 @@ u32 check_object_grab_mario(struct MarioState *m, UNUSED u32 interactType, struc
 
 u32 interact_pole(struct MarioState *m, UNUSED u32 interactType, struct Object *obj) {
     s32 actionId = m->action & ACT_ID_MASK;
-    if (actionId >= ACT_GROUP_AIRBORNE && actionId < (ACT_HOLD_JUMP & ACT_ID_MASK)) {
+    if ((actionId >= ACT_GROUP_AIRBORNE && actionId < (ACT_HOLD_JUMP & ACT_ID_MASK)) && !(m->flags & MARIO_SUPER)) { // Original: if (actionId >= ACT_GROUP_AIRBORNE && actionId < (ACT_HOLD_JUMP & ACT_ID_MASK))
         if (!(m->prevAction & ACT_FLAG_ON_POLE) || m->usedObj != obj) {
 #if defined(VERSION_SH) || defined(SHINDOU_POLES)
             f32 velConv = m->forwardVel; // conserve the velocity.

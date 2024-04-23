@@ -82,7 +82,7 @@ void exclamation_box_act_active(void) {
         o->oPosY = o->oHomeY;
         o->oGraphYOffset = 0.0f;
     }
-    if (cur_obj_was_attacked_or_ground_pounded()) {
+    if ((cur_obj_was_attacked_or_ground_pounded()) || (((obj_check_if_collided_with_object(gMarioObject, o)) || (cur_obj_is_mario_on_platform())) && (gMarioState->flags & MARIO_SUPER))) { // Original: if (cur_obj_was_attacked_or_ground_pounded())
         cur_obj_become_intangible();
         o->oExclamationBoxScaleAngle = 0x4000;
         o->oVelY = 30.0f;
@@ -91,6 +91,12 @@ void exclamation_box_act_active(void) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
+
+        //
+        if (gMarioState->flags & MARIO_SUPER) {
+            update_super_mario_kill_count(o);
+        }
+        //
     }
     load_object_collision_model();
 }
@@ -155,6 +161,9 @@ void exclamation_box_act_explode(void) {
 void exclamation_box_act_wait_for_respawn(void) {
     if (o->oTimer > 300) {
         o->oAction = EXCLAMATION_BOX_ACT_ACTIVE;
+        //
+        o->superKilled = FALSE;
+        //
     }
 }
 

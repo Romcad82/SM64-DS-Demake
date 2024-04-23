@@ -10,12 +10,15 @@ void bhv_1up_interact(void) {
 #endif
 #endif
 #ifdef ENABLE_LIVES
-        if (GET_BPARAM3(o->oBehParams) != 0x01) { // Delete later if decide to make original super mushroom
+        if (!(cur_obj_has_behavior(bhvSuperMushroom))) { //
             play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
 			gMarioState->numLives++;
 		} else {
-            play_sound_if_no_flag(gMarioState, SOUND_MENU_EXIT_PIPE, MARIO_ACTION_SOUND_PLAYED);
-			gMarioState->healCounter = 31;
+            //play_sound_if_no_flag(gMarioState, SOUND_MENU_EXIT_PIPE, MARIO_ACTION_SOUND_PLAYED);
+
+            gMarioState->flags |= MARIO_SUPER;
+            gMarioState->capTimer = 600;
+            play_cap_music(SEQUENCE_ARGS(4, SEQ_EVENT_SUPER_MARIO));
 		}
         // Original: gMarioState->numLives++;
 #endif

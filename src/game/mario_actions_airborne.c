@@ -413,7 +413,7 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
         case AIR_STEP_HIT_WALL:
             set_mario_animation(m, animation);
 
-            if (m->forwardVel > 16.0f) {
+            if ((m->forwardVel > 16.0f) && !(m->flags & MARIO_SUPER)) { // Original: if (m->forwardVel > 16.0f)
 #if ENABLE_RUMBLE
                 queue_rumble_data(5, 40);
 #endif
@@ -459,7 +459,10 @@ u32 common_air_action_step(struct MarioState *m, u32 landAction, s32 animation, 
             break;
 
         case AIR_STEP_GRABBED_CEILING:
-            set_mario_action(m, ACT_START_HANGING, 0);
+            if (!(m->flags & MARIO_SUPER)) {
+                set_mario_action(m, ACT_START_HANGING, 0);
+            }
+            // Original: set_mario_action(m, ACT_START_HANGING, 0);
             break;
 
         case AIR_STEP_HIT_LAVA_WALL:

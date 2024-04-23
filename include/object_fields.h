@@ -630,6 +630,7 @@
 #define /*0x110*/ oHitNumber				 OBJECT_FIELD_U32(0x22)
 #define /*0x1B0*/ oCurrDirection			 OBJECT_FIELD_U32(0x49)
 #define /*0x1B0*/ oGoombaPrevAction			 OBJECT_FIELD_S32(0x4A)
+#define /*0x1B0*/ oBossAttacked 			 OBJECT_FIELD_S32(0x47)
 
 /* Haunted Chair */
 #define /*0x0F4*/ oHauntedChairSpinTimer          OBJECT_FIELD_S32(0x1B)
