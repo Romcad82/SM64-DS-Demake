@@ -2515,14 +2515,15 @@ void update_super_mario_kill_count(struct Object *obj) {
     gMarioState->superMarioKillCount++;
 
     struct Object *orangeNumber;
+    f32 yOffset = ((175.0f * gMarioState->marioObj->header.gfx.scale[1]) / 2.0f) + 87.5f;
     if (gMarioState->superMarioKillCount < 8) {
-        orangeNumber = spawn_object_relative(gMarioState->superMarioKillCount, gMarioObject->oPosX, (gMarioObject->oPosY + 393.75f), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
+        orangeNumber = spawn_object_relative(gMarioState->superMarioKillCount, gMarioObject->oPosX, (gMarioObject->oPosY + yOffset), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
     } else {
-        orangeNumber = spawn_object_relative(ORANGE_NUMBER_9 + 7, gMarioObject->oPosX, (gMarioObject->oPosY + 393.75f), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
+        orangeNumber = spawn_object_relative(ORANGE_NUMBER_9 + 7, gMarioObject->oPosX, (gMarioObject->oPosY + yOffset), gMarioObject->oPosZ, gMarioObject, MODEL_NUMBER, bhvOrangeNumber);
         play_sound(SOUND_GENERAL_COLLECT_1UP, gGlobalSoundSource);
 		gMarioState->numLives++;
     }
-	orangeNumber->oPosY = (gMarioObject->oPosY + 393.75f);
+	orangeNumber->oPosY = (gMarioObject->oPosY + yOffset);
 	orangeNumber->oPosY += 25.0f;
 	orangeNumber->oOrangeNumberOffset = 0;
 	orangeNumber->oHomeX = gMarioObject->oPosX;
