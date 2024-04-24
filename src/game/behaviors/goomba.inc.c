@@ -375,9 +375,14 @@ void bhv_goomba_update(void) {
     }
 
     //
-	if ((gCurrLevelNum == LEVEL_GB) && (gCurrAreaIndex == 2) && (o->oPosY <= 250.0f)) {
-		obj_die_if_health_non_positive();
+	if (gCurrLevelNum == LEVEL_GB) {
+        if ((gCurrAreaIndex == 1) && (o->oPosY < (find_poison_gas_level(o->oPosX, o->oPosZ) - 100.0f))) {
+            obj_die_if_health_non_positive();
+        } else if ((gCurrAreaIndex == 2) && (o->oPosY <= 250.0f)) {
+            obj_die_if_health_non_positive();
+        }
 	}
+    
     if (cur_obj_nearest_object_with_behavior(bhvGoombaBoss)) {
         if ((cur_obj_nearest_object_with_behavior(bhvGoombaBoss)->oAction == GOOMBA_ACT_WALK) && !((o->oAction >= OBJ_ACT_HORIZONTAL_KNOCKBACK) && (o->oAction <= OBJ_ACT_SQUISHED))) {
             struct Object *goombaMinion = spawn_object_abs_with_rot(o, 0, MODEL_GOOMBA, bhvGoombaMinion, o->oPosX, o->oPosY, o->oPosZ, o->oFaceAnglePitch, o->oFaceAngleYaw, o->oFaceAngleRoll);
