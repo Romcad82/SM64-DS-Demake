@@ -486,6 +486,64 @@ void bhv_wooden_post_update(void) {
     }
 }
 
+//
+void bhv_poundable_signpost_update(void) {
+    if (o->oAction == 0) {
+        if (!o->oWoodenPostMarioPounding) {
+            if ((o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform()) || (((obj_check_if_collided_with_object(gMarioObject, o)) || (cur_obj_is_mario_on_platform())) && (gMarioState->flags & MARIO_SUPER) && (o->oWoodenPostOffsetY > -100.0f))) { // Original: if ((o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform()))
+                cur_obj_play_sound_2(SOUND_GENERAL_POUND_WOOD_POST);
+                o->oWoodenPostSpeedY = -70.0f;
+
+                //
+                if (gMarioState->flags & MARIO_SUPER) {
+                    o->oWoodenPostMarioPounding = TRUE;
+
+                    o->oGravity = 2.333333333333333f;
+                    o->oPosY = o->oHomeY;
+                    o->oWoodenPostOffsetY = 0.0f;
+                    o->oVelY = 35.0f;
+                    o->oFaceAngleYaw = o->oMoveAngleYaw = o->oAngleToMario + 0x8000;
+                    o->oWoodenPostSpeedY = (gMarioStates[0].forwardVel / 2.0f) + 5.0f;
+                    o->oCollisionDistance = 0.0f;
+                    o->oAction = 1;
+
+                    update_super_mario_kill_count(o);
+                }
+                //
+            }
+        } else if (approach_f32_ptr(&o->oWoodenPostSpeedY, 0.0f, 30.0f)) {
+            // Stay still until mario is done ground pounding
+            o->oWoodenPostMarioPounding = cur_obj_is_mario_ground_pounding_platform();
+        } else if ((o->oWoodenPostOffsetY += o->oWoodenPostSpeedY) < -100.0f) {
+            o->oWoodenPostOffsetY = -100.0f;
+        }
+
+        if (o->oWoodenPostOffsetY != 0.0f) {
+            o->oPosY = o->oHomeY + o->oWoodenPostOffsetY;
+        } else {
+            // Reset the timer once mario is far enough
+            if (o->oDistanceToMario > 400.0f) {
+                o->oTimer = o->oWoodenPostTotalMarioAngle = 0;
+            }
+
+            o->oWoodenPostPrevAngleToMario = o->oAngleToMario;
+        }
+    } else {
+        o->oForwardVel = o->oWoodenPostSpeedY;
+
+        s16 collisionFlags = object_step();
+
+        o->oFaceAnglePitch += 0x1000;
+
+        if ((o->oTimer >= 30) || (collisionFlags & OBJ_COL_FLAG_GROUNDED)) {
+            spawn_mist_particles_with_sound(SOUND_GENERAL_BREAK_BOX);
+            spawn_triangle_break_particles(30, MODEL_DIRT_ANIMATION, 3.0f, 4);
+            obj_mark_for_deletion(o);
+        }
+    }
+}
+//
+
 /**
  * Init function for chain chomp gate.
  */
