@@ -64,6 +64,12 @@ s32 check_fall_damage(struct MarioState *m, u32 hardFallAction) {
     return FALSE;
 #endif
 
+    //
+    if (m->flags & MARIO_SUPER) {
+        return FALSE;
+    }
+    //
+
     f32 fallHeight = m->peakHeight - m->pos[1];
 
     f32 damageHeight = FALL_DAMAGE_HEIGHT_SMALL;
